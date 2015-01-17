@@ -1,28 +1,16 @@
-# Compiled Object files
-*.slo
-*.lo
-*.o
-*.obj
+﻿#过滤数据库文件、sln解决方案文件、配置文件
+*.opensdf
+*.sdf
+*.suo
+*.aps
+*.config
+*.user
 
-# Precompiled Headers
-*.gch
-*.pch
 
-# Compiled Dynamic libraries
-*.so
-*.dylib
-*.dll
-
-# Fortran module files
-*.mod
-
-# Compiled Static libraries
-*.lai
-*.la
-*.a
-*.lib
-
-# Executables
-*.exe
-*.out
-*.app
+#过滤文件夹Debug,Release,obj
+Debug/
+Release/
+Debug.win32/
+Release.win32/
+ipch/
+cocos2d/
