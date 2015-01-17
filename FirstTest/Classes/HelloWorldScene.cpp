@@ -10,8 +10,56 @@ Scene* HelloWorld::createScene()
     // 'layer' is an autorelease object
     auto layer = HelloWorld::create();
 
+	Size visibleSize = Director::getInstance()->getVisibleSize();
+	Vec2 origin = Director::getInstance()->getVisibleOrigin();
+
     // add layer as a child to scene
     scene->addChild(layer);
+
+	auto gradientLayer = LayerGradient::create(Color4B(255, 0, 255, 255), Color4B(0, 0, 255, 255));
+	//gradientLayer->setContentSize(Size(200, 200));
+	gradientLayer->setContentSize(Size(visibleSize.width / 4, visibleSize.height / 4));
+
+	gradientLayer->ignoreAnchorPointForPosition(false);
+	gradientLayer->setAnchorPoint(Point(0, 0));
+
+	//gradientLayer->setPosition(200, 100);
+	scene->addChild(gradientLayer);
+
+	auto colocLayer = LayerColor::create(Color4B(255, 255, 0, 128), visibleSize.width / 2, visibleSize.height / 2);
+
+	//在Cocos2d-x中Layer的Anchor Point为默认值(0, 0)，其他Node的默认值为(0.5, 0.5)。
+	//因为Layer比较特殊，它默认忽略锚点，所以要调用ignoreAnchorPointForPosition()接口来改变锚点
+	colocLayer->ignoreAnchorPointForPosition(false);
+	colocLayer->setAnchorPoint(Point(0.5, 0.5));
+
+	//colocLayer->setContentSize(Size(200, 200));
+	//colocLayer->setPosition(100 + 250, 100);
+	colocLayer->setPosition(Point(visibleSize.width / 2 + origin.x, visibleSize.height / 2 + origin.y));
+
+	//colocLayer->addChild(gradientLayer);
+
+	scene->addChild(colocLayer);
+
+	auto gradientLayer1 = LayerGradient::create(Color4B(255, 0, 255, 255), Color4B(0, 0, 255, 255));
+	//gradientLayer1->setContentSize(Size(200, 200));
+	gradientLayer1->setContentSize(Size(visibleSize.width / 4, visibleSize.height / 4));
+	auto colocLayer1 = LayerColor::create(Color4B(255, 255, 0, 128));
+	//colocLayer1->setContentSize(Size(200, 200));
+	colocLayer1->setContentSize(Size(visibleSize.width / 4, visibleSize.height / 4));
+	auto multiLayer = LayerMultiplex::create();
+	multiLayer->addLayer(gradientLayer1);
+	multiLayer->addLayer(colocLayer1);
+
+	multiLayer->switchTo(0);//可任意切换
+
+	//multiLayer->setContentSize(Size(200, 200));
+	multiLayer->setContentSize(Size(visibleSize.width / 4, visibleSize.height / 4));
+	//multiLayer->setPosition(100 + 250 + 250, 100);
+	multiLayer->setPosition(Point(visibleSize.width * 3 / 4 + origin.x, origin.y));
+
+
+	scene->addChild(multiLayer);
 
     // return the scene
     return scene;
@@ -88,4 +136,34 @@ void HelloWorld::menuCloseCallback(Ref* pSender)
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
     exit(0);
 #endif
+}
+
+void HelloWorld::onEnter()
+{
+	Layer::onEnter();
+	CCLOG("onEnter");
+}
+
+void HelloWorld::onEnterTransitionDidFinish()
+{
+	Layer::onEnterTransitionDidFinish();
+	CCLOG("onEnterTransitionDidFinish");
+}
+
+void HelloWorld::onExit()
+{
+	Layer::onExit();
+	CCLOG("onExit");
+}
+
+void HelloWorld::onExitTransitionDidStart()
+{
+	Layer::onExitTransitionDidStart();
+	CCLOG("onExitTransitionDidStart");
+}
+
+void HelloWorld::cleanup()
+{
+	Layer::cleanup();
+	CCLOG("cleanup");
 }
