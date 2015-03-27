@@ -1,6 +1,12 @@
-#include "HelloWorldScene.h"
+﻿#include "HelloWorldScene.h"
+#include "ImageScene.h"
 
 USING_NS_CC;
+
+#if  (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
+#pragma execution_character_set("utf-8")
+#endif
+
 
 Scene* HelloWorld::createScene()
 {
@@ -54,14 +60,47 @@ bool HelloWorld::init()
     // add a label shows "Hello World"
     // create and initialize a label
     
-    auto label = Label::createWithTTF("Hello World", "fonts/Marker Felt.ttf", 24);
+    auto label = Label::createWithTTF("Hello World", "fonts/SIMYOU.TTF", 24);
     
     // position the label on the center of the screen
     label->setPosition(Vec2(origin.x + visibleSize.width/2,
                             origin.y + visibleSize.height - label->getContentSize().height));
 
+	label->setName("test");
+
     // add the label as a child to this layer
     this->addChild(label, 1);
+
+	this->clickNum = 0;
+
+	auto listener = EventListenerTouchOneByOne::create();
+	listener->onTouchBegan = [=](Touch *t, Event *e)
+	{
+		if (label->getBoundingBox().containsPoint(t->getLocation()))
+		{
+			clickNum++;
+			if (clickNum > 3)
+			{
+				label->setString(label->getString() + "我擦，别点了！");
+			}
+			//Director::getInstance()->replaceScene(ImageScene::createScene());//原场景销毁
+
+			Director::getInstance()->pushScene(TransitionFadeTR::create(1, ImageScene::createScene()));//原场景暂停，即HelloWorldScene暂停了
+		}
+		return false;//是否吞噬此事件，如果true，则不向上传递此事件
+	};
+
+	listener->onTouchMoved = [](Touch *t, Event *e)
+	{
+
+	};
+
+	listener->onTouchEnded = [](Touch *t, Event *e)
+	{
+
+	};
+
+	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener, label);
 
     // add "HelloWorld" splash screen"
     auto sprite = Sprite::create("HelloWorld.png");
