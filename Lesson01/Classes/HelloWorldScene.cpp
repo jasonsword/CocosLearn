@@ -74,7 +74,7 @@ bool HelloWorld::init()
 	this->clickNum = 0;
 
 	auto listener = EventListenerTouchOneByOne::create();
-	listener->onTouchBegan = [=](Touch *t, Event *e)
+	listener->onTouchBegan = [&](Touch *t, Event *e)
 	{
 		if (label->getBoundingBox().containsPoint(t->getLocation()))
 		{

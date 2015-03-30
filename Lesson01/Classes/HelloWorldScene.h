@@ -8,6 +8,8 @@ class HelloWorld : public cocos2d::Layer
 private:
 	int clickNum;
 
+	//cocos2d::Label *label;
+
 public:
     // there's no 'id' in cpp, so we recommend returning the class instance pointer
     static cocos2d::Scene* createScene();
