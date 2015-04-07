@@ -10,15 +10,17 @@ public:
 	static cocos2d::Scene* createScene();
 
     virtual bool init();
+	virtual void onEnter();
 
 	void CreateBgParticle(cocos2d::Vec2 &position, const std::string &particleName);
 
     // implement the "static create()" method manually
 	CREATE_FUNC(MenuScene);
 
-protected:
 
-private:
+	
+
+
 
 };
 

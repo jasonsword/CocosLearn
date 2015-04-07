@@ -1,4 +1,5 @@
 ﻿#include "GameScene.h"
+#include "TopMenu.h"
 
 USING_NS_CC;
 
@@ -33,6 +34,9 @@ bool GameScene::init()
 	background->setPosition(visibleSize.width / 2, visibleSize.height / 2);
 	this->addChild(background, -1);
     
+	auto topmenu = TopMenu::create();
+	this->addChild(topmenu);
+
     return true;
 }
 

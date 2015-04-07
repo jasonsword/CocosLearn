@@ -1,5 +1,6 @@
 ﻿#include "MenuScene.h"
 #include "GameScene.h"
+#include "GameData.h"
 
 USING_NS_CC;
 
@@ -34,35 +35,51 @@ bool MenuScene::init()
 	background->setPosition(visibleSize.width / 2, visibleSize.height / 2);
 	this->addChild(background, -1);
 
-	//加特效
-	CreateBgParticle(Vec2(visibleSize.width * 3 / 4, visibleSize.height * 3 / 4 + 50), "leaf_open");
-	CreateBgParticle(Vec2(visibleSize.width * 2 / 4, visibleSize.height * 3 / 4), "quanquan");
+	//加特效DUANG
+	CreateBgParticle(Vec2(visibleSize.width / 4 + 40, visibleSize.height * 3 / 4 - 100), "leaf_open");
+	CreateBgParticle(Vec2(visibleSize.width *3 / 4, visibleSize.height * 3 / 4 + 50), "quanquan");
 
 	//Pop背景
 	auto backgroundPop = Sprite::createWithSpriteFrameName("pop.png");
-	backgroundPop->setPosition(visibleSize.width / 3, visibleSize.height * 3 / 4 + 100);
-	this->addChild(backgroundPop);
-
+	
 	//Star背景
 	auto backgroundStar = Sprite::createWithSpriteFrameName("star.png");
-	backgroundStar->setPosition(visibleSize.width * 2 / 3, visibleSize.height * 3 / 4 - 100);
-	this->addChild(backgroundStar);
+	backgroundStar->setAnchorPoint(Vec2(-0.6f, 0.7f));
+	backgroundPop->addChild(backgroundStar);
+
+	float xoffset = visibleSize.width / 2 - (backgroundPop->getContentSize().width / 2 + backgroundStar->getContentSize().width / 10) / 2 + 15;
+	backgroundPop->setPosition(xoffset, visibleSize.height- backgroundPop->getContentSize().height);
+
+	this->addChild(backgroundPop);
+	
 
 	//开始游戏
 	auto startBtn = MenuItemImage::create("", "", [](Ref* pSender){
+		GameData::getInstance()->newGame();
 		Director::getInstance()->replaceScene(GameScene::createScene());
 	});
 	startBtn->setNormalSpriteFrame(SpriteFrameCache::getInstance()->getSpriteFrameByName("newgame.png"));
 
 	//继续上次的
 	auto resumeBtn = MenuItemImage::create("", "", [](Ref* pSender){
+		GameData::getInstance()->lastGame();
 		Director::getInstance()->replaceScene(GameScene::createScene());
 	});
 	resumeBtn->setNormalSpriteFrame(SpriteFrameCache::getInstance()->getSpriteFrameByName("resume.png"));
 
-	//排行
+	//退出
 	auto rateBtn = MenuItemImage::create("", "", [](Ref* pSender){
-		Director::getInstance()->replaceScene(GameScene::createScene());
+		GameData::getInstance()->loadHistory();
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_WP8) || (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT)
+		MessageBox("You pressed the close button. Windows Store Apps do not implement a close button.", "Alert");
+		return;
+#endif
+
+		Director::getInstance()->end();
+
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+		exit(0);
+#endif
 	});
 	rateBtn->setNormalSpriteFrame(SpriteFrameCache::getInstance()->getSpriteFrameByName("rate.png"));
 
@@ -81,4 +98,12 @@ void MenuScene::CreateBgParticle(cocos2d::Vec2 &position, const std::string &par
 	particle->setAnchorPoint(Vec2(0.5f, 0.5f));
 	particle->setPosition(position);
 	this->addChild(particle);
+}
+
+void MenuScene::onEnter()
+{
+	Layer::onEnter();
+
+	CCLOG("MenuScene onEnter");
+
 }
