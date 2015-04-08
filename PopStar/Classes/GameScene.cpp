@@ -1,5 +1,6 @@
 ﻿#include "GameScene.h"
 #include "TopMenu.h"
+#include "StarMatrix.h"
 
 USING_NS_CC;
 
@@ -36,6 +37,10 @@ bool GameScene::init()
     
 	auto topmenu = TopMenu::create();
 	this->addChild(topmenu);
+
+
+	auto matrix = StarMatrix::create();
+	this->addChild(matrix);
 
     return true;
 }
