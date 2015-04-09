@@ -51,10 +51,18 @@ bool Star::init()
 	listener->onTouchBegan = [=](Touch *t, Event *e){
 		if (this->getBoundingBox().containsPoint(t->getLocation()))
 		{
-			CCLOG("click %d -- %d", this->getX(), this->getY());
-			this->setStatus(true);
-			//StarMatrix* matrix = (StarMatrix*)this->getParent();
-			//matrix->findOtherSelectedStar(this);
+			//CCLOG("click %d -- %d", this->getX(), this->getY());
+			StarMatrix* matrix = (StarMatrix*)this->getParent();
+			if (!this->getStatus())
+			{
+				this->setStatus(true);
+				matrix->consumeSelectedStar(this);
+			}
+			else
+			{
+				matrix->deleteSelectedStar();
+			}
+			
 		}
 		return false;
 	};

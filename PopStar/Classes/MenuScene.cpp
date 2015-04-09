@@ -55,21 +55,21 @@ bool MenuScene::init()
 
 	//开始游戏
 	auto startBtn = MenuItemImage::create("", "", [](Ref* pSender){
-		GameData::getInstance()->newGame();
+		GameData::getInstance()->init(GameData::PlayType::NEW);
 		Director::getInstance()->replaceScene(GameScene::createScene());
 	});
 	startBtn->setNormalSpriteFrame(SpriteFrameCache::getInstance()->getSpriteFrameByName("newgame.png"));
 
 	//继续上次的
 	auto resumeBtn = MenuItemImage::create("", "", [](Ref* pSender){
-		GameData::getInstance()->lastGame();
+		GameData::getInstance()->init(GameData::PlayType::LAST);
 		Director::getInstance()->replaceScene(GameScene::createScene());
 	});
 	resumeBtn->setNormalSpriteFrame(SpriteFrameCache::getInstance()->getSpriteFrameByName("resume.png"));
 
 	//退出
 	auto rateBtn = MenuItemImage::create("", "", [](Ref* pSender){
-		GameData::getInstance()->loadHistory();
+		GameData::getInstance()->save();
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_WP8) || (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT)
 		MessageBox("You pressed the close button. Windows Store Apps do not implement a close button.", "Alert");
 		return;
@@ -104,6 +104,6 @@ void MenuScene::onEnter()
 {
 	Layer::onEnter();
 
-	CCLOG("MenuScene onEnter");
+	//CCLOG("MenuScene onEnter");
 
 }

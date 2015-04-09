@@ -1,4 +1,6 @@
 ﻿#include "StarMatrix.h"
+#include "GameScene.h"
+#include "GameData.h"
 
 USING_NS_CC;
 
@@ -35,22 +37,17 @@ void StarMatrix::createMatrix()
 			star->runAction(MoveTo::create(0.25, dest));
 			this->addChild(star);
 
-			//一维是行 二维是列
+			//一维是x 二维是y
 			_star[i][j] = star;
 		}
 	}
-}
-
-void StarMatrix::update(float delta)
-{
-	genSelectedStar();
 }
 
 void StarMatrix::onEnter()
 {
 	Layer::onEnter();
 
-	CCLOG("StarMatrix OnEnter");
+	//CCLOG("StarMatrix OnEnter");
 
 	auto delay = DelayTime::create(0.5f);
 	auto callfunc = CallFunc::create([this](){
@@ -58,50 +55,38 @@ void StarMatrix::onEnter()
 	});
 	auto delay2 = DelayTime::create(3.0f);
 	auto callfunc2 = CallFunc::create([this](){
-		this->scheduleUpdate();
+		this->schedule(schedule_selector(StarMatrix::updateCheck), 0.5f);
 	});
 	auto action = Sequence::create(delay,callfunc, delay2, callfunc2, nullptr);
 	this->runAction(action);
 }
 
-Star* StarMatrix::getFirstSelectedStar()
+void StarMatrix::consumeSelectedStar(Star* original)
 {
-	for (int j = 0; j < COL_NUM; j++)
+	//先将所有的其它选中项清除
+	for (int j = 0; j < ROW_NUM; j++)
 	{
-		for (int i = 0; i < ROW_NUM; i++)
+		for (int i = 0; i < COL_NUM; i++)
 		{
-			if (_star[j][i] != nullptr && _star[j][i]->getStatus())
+			if (_star[i][j] != nullptr && 
+				_star[i][j] != original && 
+				_star[i][j]->getStatus())
 			{
-				return _star[j][i];
+				_star[i][j]->setStatus(false);
 			}
 		}
 	}
-	return nullptr;
-}
 
-void StarMatrix::genSelectedStar()
-{
-	Star* star = getFirstSelectedStar();
-	if (star == nullptr)
-	{
-		//CCLOG("selected star not found");
-		selectedCount = 0;
-		return;
-	}
 	selectedCount = 1;
 	//CCLOG("first %d --- %d", star->getX(), star->getY());
-	findOtherSelectedStar(star);
+	findOtherSelectedStar(original);
 	
 	if (selectedCount <= 1)
 	{
-		star->setStatus(false);
+		original->setStatus(false);
 		selectedCount = 0;
 		return;
 	}
-
-	deleteSelectedStar();
-	updateLeftStarPosition();
-
 }
 
 void StarMatrix::findOtherSelectedStar(Star* original)
@@ -110,39 +95,38 @@ void StarMatrix::findOtherSelectedStar(Star* original)
 	{
 		return;
 	}
-	Star::StarColor color = original->getStarColor();
 	int x = original->getX();
 	int y = original->getY();
 	//左
 	if (x > 0)
 	{
-		findOneDirection(color, x - 1, y);
+		findOneDirection(original, x - 1, y);
 	}
 	//右
 	if (x < COL_NUM - 1)
 	{
-		findOneDirection(color, x + 1, y);
+		findOneDirection(original, x + 1, y);
 	}
 	//上
 	if (y < ROW_NUM - 1)
 	{
-		findOneDirection(color, x, y + 1);
+		findOneDirection(original, x, y + 1);
 	}
 	//下
 	if (y > 0)
 	{
-		findOneDirection(color, x, y - 1);
+		findOneDirection(original, x, y - 1);
 	}
 }
 
-void StarMatrix::findOneDirection(Star::StarColor color, int x, int y)
+void StarMatrix::findOneDirection(Star* original, int x, int y)
 {
 	Star* star = _star[x][y];
-	if (star != nullptr && star->getStarColor() == color)
+	if (star != nullptr && star->getStarColor() == original->getStarColor())
 	{
 		if (!star->getStatus())
 		{
-			CCLOG("match %d --- %d", x, y);
+			//CCLOG("match %d --- %d", x, y);
 			selectedCount++;
 			star->setStatus(true);
 			findOtherSelectedStar(star);
@@ -152,6 +136,10 @@ void StarMatrix::findOneDirection(Star::StarColor color, int x, int y)
 
 void StarMatrix::deleteSelectedStar()
 {
+	if (selectedCount <= 1)
+	{
+		return;
+	}
 	for (int j = 0; j < ROW_NUM; j++)
 	{
 		for (int i = 0; i < COL_NUM; i++)
@@ -164,6 +152,10 @@ void StarMatrix::deleteSelectedStar()
 			}
 		}
 	}
+	//更新剩余星星的位置
+	updateLeftStarPosition();
+	//计算分数以及通关状态
+	updateScore();
 }
 
 void StarMatrix::updateLeftStarPosition()
@@ -181,6 +173,7 @@ void StarMatrix::updateLeftStarPosition()
 				{
 					if (_star[x][i] != nullptr)
 					{
+						//+1代表要往下移1格
 						_star[x][i]->setYOffset(_star[x][i]->getYOffset() + 1);
 					}
 				}
@@ -233,5 +226,101 @@ void StarMatrix::updateLeftStarPosition()
 		}
 	}
 	
+}
+
+void StarMatrix::updateScore()
+{
+	//分数 = 数量 * 数量 * 5
+	int score = selectedCount * selectedCount * 5;
+	GameData::getInstance()->setScore(score);
+}
+
+bool StarMatrix::checkEnded()
+{
+	for (int x = 0; x < COL_NUM; x++)
+	{
+		for (int y = 0; y < ROW_NUM; y++)
+		{
+			if (_star[x][y] != nullptr)
+			{
+				if (checkOne(x, y))
+				{
+					return false;
+				}
+			}
+		}
+	}
+	return true;
+}
+
+bool StarMatrix::checkOne(int x, int y)
+{
+	//左
+	if (x > 0)
+	{
+		if (_star[x - 1][y] != nullptr && _star[x - 1][y]->getStarColor() == _star[x][y]->getStarColor())
+		{
+			return true;
+		}
+	}
+	//右
+	if (x < COL_NUM - 1)
+	{
+		if (_star[x + 1][y] != nullptr && _star[x + 1][y]->getStarColor() == _star[x][y]->getStarColor())
+		{
+			return true;
+		}
+	}
+	//下
+	if (y > 0)
+	{
+		if (_star[x][y - 1] != nullptr && _star[x][y - 1]->getStarColor() == _star[x][y]->getStarColor())
+		{
+			return true;
+		}
+	}
+	//上
+	if (y < ROW_NUM - 1)
+	{
+		if (_star[x][y + 1] != nullptr && _star[x][y + 1]->getStarColor() == _star[x][y]->getStarColor())
+		{
+			return true;
+		}
+	}
+
+	return false;
+}
+
+int StarMatrix::getLeftCount()
+{
+	int count = 0;
+	for (int x = 0; x < COL_NUM; x++)
+	{
+		for (int y = 0; y < ROW_NUM; y++)
+		{
+			if (_star[x][y] != nullptr)
+			{
+				count++;
+			}
+		}
+	}
+	return count;
+}
+
+void StarMatrix::updateCheck(float delta /*= 0*/)
+{
+	if (checkEnded())
+	{
+		CCLOG("no more star can be cleared!");
+		int leftCount = getLeftCount();
+		//剩余分数 = 2000 - 剩余数量 * 剩余数量 * 5
+		int leftScore = 2000 - leftCount * leftCount * 5;
+		if (leftScore > 0)
+		{
+			GameData::getInstance()->setScore(leftScore);
+		}
+		GameScene* scene = (GameScene *)this->getParent();
+		scene->TongGuan();
+	}
 }
 

@@ -1,5 +1,6 @@
 ﻿#include "TopMenu.h"
 #include "BackToMenu.h"
+#include "GameData.h"
 
 USING_NS_CC;
 
@@ -29,15 +30,15 @@ bool TopMenu::init()
 	listener->onTouchBegan = [this](Touch *t, Event *e){
 		if (e->getCurrentTarget()->getBoundingBox().containsPoint(t->getLocation()))
 		{
-			CCLOG("back to menu creat!");
-			auto backto = BackToMenu::create();
-			this->getScene()->addChild(backto, 10);//优先级设置成10，以保证能吞并层下的事件
+			//CCLOG("back to menu creat!");
+			this->getParent()->addChild(BackToMenu::getInstance(), 10);//优先级设置成10，以保证能吞并层下的事件
 		}
 		return false;
 	};
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener, backtomenu);
 	this->addChild(backtomenu);
 
+	schedule(schedule_selector(TopMenu::updateGameData), 0.5);
 
     return true;
 }
@@ -76,3 +77,19 @@ void TopMenu::createOne(TM_ORIENTTATION tm,
 		background->getPositionY() + 10);
 	this->addChild(number);
 }
+
+void TopMenu::updateGameData(float delta)
+{
+	Label* bestScore = (Label *)this->getChildByName("bestScore");
+	bestScore->setString(cocos2d::String::createWithFormat("%d", GameData::getInstance()->getBestScore())->_string);
+
+	Label* score = (Label *)this->getChildByName("score");
+	score->setString(cocos2d::String::createWithFormat("%d", GameData::getInstance()->getScore())->_string);
+
+	Label* target = (Label *)this->getChildByName("target");
+	target->setString(cocos2d::String::createWithFormat("%d", GameData::getInstance()->getTarget())->_string);
+
+	Label* stage = (Label *)this->getChildByName("stage");
+	stage->setString(cocos2d::String::createWithFormat("%d", GameData::getInstance()->getStage())->_string);
+}
+

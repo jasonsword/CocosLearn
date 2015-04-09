@@ -11,18 +11,20 @@ class StarMatrix : public cocos2d::Layer
 {
 public:
 	virtual bool init();
-
-	virtual void update(float delta);
-
 	virtual void onEnter();
 
-	int selectedCount;
-	void genSelectedStar();
-	Star* getFirstSelectedStar();
+	void consumeSelectedStar(Star* original);
 	void findOtherSelectedStar(Star* original);
-	void findOneDirection(Star::StarColor color, int x, int y);
+	void findOneDirection(Star* original, int x, int y);
 	void deleteSelectedStar();
 	void updateLeftStarPosition();
+
+	void updateScore();
+
+	void updateCheck(float delta = 0);
+	bool checkEnded();
+	bool checkOne(int x, int y);
+	int getLeftCount();
 
 	CREATE_FUNC(StarMatrix);
 
@@ -31,6 +33,7 @@ private:
 
 private:
 	Star* _star[ROW_NUM][COL_NUM];
+	int selectedCount;   //已选择的星星数量
 	
 
 };

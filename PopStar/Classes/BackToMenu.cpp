@@ -4,7 +4,6 @@
 
 USING_NS_CC;
 
-
 // on "init" you need to initialize your instance
 bool BackToMenu::init()
 {
@@ -18,8 +17,8 @@ bool BackToMenu::init()
 
 	//继续刚才的
 	auto resumeBtn = MenuItemImage::create("", "", [this](Ref* pSender){
-		CCLOG("go on!");
-		this->getScene()->removeChild(this);
+		//CCLOG("go on!");
+		this->getParent()->removeChild(this);
 	});
 	resumeBtn->setNormalSpriteFrame(SpriteFrameCache::getInstance()->getSpriteFrameByName("resume.png"));
 
@@ -39,7 +38,7 @@ bool BackToMenu::init()
 	//吞并屏蔽下层的点击事件
 	auto listener = EventListenerTouchOneByOne::create();
 	listener->onTouchBegan = [](Touch *t, Event *e){
-		CCLOG("ping bi success");
+		//CCLOG("ping bi success");
 		return true;
 	};
 	listener->setSwallowTouches(true);
@@ -47,4 +46,5 @@ bool BackToMenu::init()
 
     return true;
 }
+
 

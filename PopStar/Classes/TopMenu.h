@@ -16,6 +16,8 @@ public:
 
     virtual bool init();
 
+	void updateGameData(float delta = 0);
+
 	//tm 方向是水平还是垂直
 	//titlePosition title的起始位置
 	//bgOffsetY 背景的垂直偏移
