@@ -3,8 +3,11 @@
 #include "StarMatrix.h"
 #include "GameData.h"
 #include "BackToMenu.h"
+#include "GameResource.h"
 
 USING_NS_CC;
+
+#pragma execution_character_set("utf-8")
 
 Scene* GameScene::createScene()
 {
@@ -41,10 +44,6 @@ bool GameScene::init()
 	topmenu->setName("topmenu");
 	this->addChild(topmenu);
 
-	auto matrix = StarMatrix::create();
-	matrix->setName(cocos2d::String::createWithFormat("stage%d", GameData::getInstance()->getStage())->_string);
-	this->addChild(matrix);
-
     return true;
 }
 
@@ -52,24 +51,104 @@ void GameScene::TongGuan()
 {
 	if (!GameData::getInstance()->getTongGuanState())
 	{
-		//移除旧的层
-		auto oldmatrix = this->getChildByName(cocos2d::String::createWithFormat("stage%d", GameData::getInstance()->getStage())->_string);
-		oldmatrix->unscheduleAllCallbacks();
-
-		this->addChild(BackToMenu::getInstance(), 10);
-
+		auto callfunc = CallFunc::create([this](){
+			this->addChild(BackToMenu::create(), 11);
+		});
+		
+		GameAudio::getInstance()->PlayGameOver();
+		this->floatGameOver(callfunc);
 		CCLOG("you died!");
 		return;
 	}
 	CCLOG("congratulations ! you passed stage %d", GameData::getInstance()->getStage());
-	//移除旧的层
-	auto oldmatrix = this->getChildByName(cocos2d::String::createWithFormat("stage%d", GameData::getInstance()->getStage())->_string);
-	removeChild(oldmatrix);
+
 	//关数加1
 	GameData::getInstance()->TongGuan();
-	//创建新的层
-	auto matrix = StarMatrix::create();
-	matrix->setName(cocos2d::String::createWithFormat("stage%d", GameData::getInstance()->getStage())->_string);
-	this->addChild(matrix);
+	
+	auto callfunc = CallFunc::create([=](){
+		//创建新游戏
+		this->createGameByStage(GameData::getInstance()->getStage());
+	});
+
+	GameAudio::getInstance()->PlayWin();
+	floatWords("恭喜通关！", 1.0f, callfunc);
+}
+
+void GameScene::onEnter()
+{
+	Layer::onEnter();
+
+	createGameByStage(GameData::getInstance()->getStage());
+}
+
+void GameScene::createGameByStage(int stage)
+{
+	if (stage > 1)
+	{
+		//移除旧的层
+		auto oldmatrix = this->getChildByName(String::createWithFormat("stage%d", stage - 1)->_string);
+		removeChild(oldmatrix);
+	}
+
+	auto callfunc = CallFunc::create([=](){
+		//创建新游戏
+		auto matrix = StarMatrix::create();
+		matrix->setName(String::createWithFormat("stage%d", stage)->_string);
+		this->addChild(matrix);
+	});
+
+	floatWords(String::createWithFormat("第%d关", GameData::getInstance()->getStage())->_string, 1.0f, callfunc);
+}
+
+void GameScene::floatWords(const std::string &text, float time, cocos2d::CallFunc* callfunc)
+{
+	//浮动特效，显示关卡
+	auto words = Label::createWithTTF("fonts/arial.ttf", text);
+	words->setSystemFontSize(100);
+
+	Size visibleSize = Director::getInstance()->getVisibleSize();
+	int posY = visibleSize.height / 2 + 200;
+	words->setPosition(-words->getContentSize().width / 2, posY);
+	this->addChild(words);
+
+	auto moveToMiddle = MoveTo::create(0.5f, Vec2(visibleSize.width / 2, posY));
+	auto moveToEdge = MoveTo::create(0.5f, Vec2(visibleSize.width + words->getContentSize().width / 2, posY));
+	auto removeSelf = CallFunc::create([words](){
+		words->removeFromParent();
+	});
+
+	words->runAction(
+		Sequence::create(
+			moveToMiddle, DelayTime::create(0.5f + time),//移到中间并显示1s
+			moveToEdge, DelayTime::create(0.5f),//移到边界之外
+			callfunc,//执行回调
+			removeSelf,//移除自己
+			nullptr
+		)
+	);
+}
+
+void GameScene::floatGameOver(cocos2d::CallFunc* callfunc /*= nullptr*/)
+{
+	auto words = Label::createWithTTF("fonts/arial.ttf", "Game Over");
+	words->setSystemFontSize(100);
+
+	Size visibleSize = Director::getInstance()->getVisibleSize();
+	words->setPosition(visibleSize.width / 2, visibleSize.height / 2 - 200);
+	this->addChild(words);
+
+	auto moveToMiddle = MoveTo::create(0.5f, Vec2(visibleSize.width / 2, visibleSize.height / 2 + 200));
+	auto removeSelf = CallFunc::create([words](){
+		words->removeFromParent();
+	});
+
+	words->runAction(
+		Sequence::create(
+			moveToMiddle, DelayTime::create(2.0f),//移到中间并显示1s
+			callfunc,//执行回调
+			removeSelf,//移除自己
+			nullptr
+		)
+	);
 }
 

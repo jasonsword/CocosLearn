@@ -25,7 +25,10 @@ GameData::~GameData()
 
 void GameData::save()
 {
-	UserDefault::getInstance()->setIntegerForKey("bestScore", _bestScore);
+	if (_bestScore > UserDefault::getInstance()->getIntegerForKey("bestScore", 0))
+	{
+		UserDefault::getInstance()->setIntegerForKey("bestScore", _bestScore);
+	}
 	UserDefault::getInstance()->setIntegerForKey("stage", _stage);
 	UserDefault::getInstance()->setIntegerForKey("score", _score);
 }

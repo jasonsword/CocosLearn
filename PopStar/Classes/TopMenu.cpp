@@ -18,10 +18,10 @@ bool TopMenu::init()
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 	Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
-	createOne(HORIZONTAL, Vec2(140, visibleSize.height - 30),  "a", "ui3.png", "2000",  "bestScore", 15, 2.0f);
-	createOne(HORIZONTAL, Vec2(80,  visibleSize.height - 100), "b", "ui2.png", "1",     "stage",     20);
-	createOne(HORIZONTAL, Vec2(400, visibleSize.height - 100), "c", "ui2.png", "34900", "target",    20, 1.2f);
-	createOne(VERTICAL,   Vec2(360, visibleSize.height - 250), "d", "ui1.png", "200",   "score",     40, 2.0f);
+	createOne(HORIZONTAL, Vec2(140, visibleSize.height - 30),  "a", "ui3.png", "0",  "bestScore", 15, 2.0f);
+	createOne(HORIZONTAL, Vec2(80,  visibleSize.height - 100), "b", "ui2.png", "1",  "stage",     20);
+	createOne(HORIZONTAL, Vec2(400, visibleSize.height - 100), "c", "ui2.png", "0",  "target",    20, 1.2f);
+	createOne(VERTICAL,   Vec2(360, visibleSize.height - 250), "d", "ui1.png", "0",  "score",     40, 2.0f);
 
 	auto backtomenu = Sprite::createWithSpriteFrameName("pause.png");
 	backtomenu->setPosition(visibleSize.width - backtomenu->getContentSize().width, visibleSize.height - backtomenu->getContentSize().height);
@@ -31,13 +31,14 @@ bool TopMenu::init()
 		if (e->getCurrentTarget()->getBoundingBox().containsPoint(t->getLocation()))
 		{
 			//CCLOG("back to menu creat!");
-			this->getParent()->addChild(BackToMenu::getInstance(), 10);//优先级设置成10，以保证能吞并层下的事件
+			this->getParent()->addChild(BackToMenu::create(), 10);//优先级设置成10，以保证能吞并层下的事件
 		}
 		return false;
 	};
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener, backtomenu);
 	this->addChild(backtomenu);
 
+	updateGameData();
 	schedule(schedule_selector(TopMenu::updateGameData), 0.5);
 
     return true;
@@ -81,15 +82,15 @@ void TopMenu::createOne(TM_ORIENTTATION tm,
 void TopMenu::updateGameData(float delta)
 {
 	Label* bestScore = (Label *)this->getChildByName("bestScore");
-	bestScore->setString(cocos2d::String::createWithFormat("%d", GameData::getInstance()->getBestScore())->_string);
+	bestScore->setString(String::createWithFormat("%d", GameData::getInstance()->getBestScore())->_string);
 
 	Label* score = (Label *)this->getChildByName("score");
-	score->setString(cocos2d::String::createWithFormat("%d", GameData::getInstance()->getScore())->_string);
+	score->setString(String::createWithFormat("%d", GameData::getInstance()->getScore())->_string);
 
 	Label* target = (Label *)this->getChildByName("target");
-	target->setString(cocos2d::String::createWithFormat("%d", GameData::getInstance()->getTarget())->_string);
+	target->setString(String::createWithFormat("%d", GameData::getInstance()->getTarget())->_string);
 
 	Label* stage = (Label *)this->getChildByName("stage");
-	stage->setString(cocos2d::String::createWithFormat("%d", GameData::getInstance()->getStage())->_string);
+	stage->setString(String::createWithFormat("%d", GameData::getInstance()->getStage())->_string);
 }
 

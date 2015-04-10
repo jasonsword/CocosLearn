@@ -18,7 +18,7 @@ bool BackToMenu::init()
 	//继续刚才的
 	auto resumeBtn = MenuItemImage::create("", "", [this](Ref* pSender){
 		//CCLOG("go on!");
-		this->getParent()->removeChild(this);
+		this->removeFromParent();
 	});
 	resumeBtn->setNormalSpriteFrame(SpriteFrameCache::getInstance()->getSpriteFrameByName("resume.png"));
 

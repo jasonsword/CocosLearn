@@ -20,6 +20,7 @@ public:
 	void updateLeftStarPosition();
 
 	void updateScore();
+	void playComboEffect();
 
 	void updateCheck(float delta = 0);
 	bool checkEnded();
@@ -35,7 +36,7 @@ private:
 	Star* _star[ROW_NUM][COL_NUM];
 	int selectedCount;   //已选择的星星数量
 	
-
+	bool _stageClearPlayed;
 };
 
 #endif // __STAR_MATRIX_H__

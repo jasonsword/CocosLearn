@@ -1,6 +1,7 @@
 ﻿#include "StarMatrix.h"
 #include "GameScene.h"
 #include "GameData.h"
+#include "GameResource.h"
 
 USING_NS_CC;
 
@@ -14,6 +15,8 @@ bool StarMatrix::init()
 	}
 
 	memset(_star, 0, sizeof(_star));
+	_stageClearPlayed = false;
+	selectedCount = 0;
 
 	return true;
 }
@@ -129,6 +132,7 @@ void StarMatrix::findOneDirection(Star* original, int x, int y)
 			//CCLOG("match %d --- %d", x, y);
 			selectedCount++;
 			star->setStatus(true);
+			star->setBoomDelay(original->getBoomDelay() + 0.1f);
 			findOtherSelectedStar(star);
 		}
 	}
@@ -140,22 +144,36 @@ void StarMatrix::deleteSelectedStar()
 	{
 		return;
 	}
+	//先禁用定时检查，防止冲突
+	this->unschedule(schedule_selector(StarMatrix::updateCheck));
+	float maxDelay = 0;// 最大延迟时间，防止和移动Action冲突
 	for (int j = 0; j < ROW_NUM; j++)
 	{
 		for (int i = 0; i < COL_NUM; i++)
 		{
-			Star* star = _star[i][j];
-			if (star != nullptr && star->getStatus())
+			if (_star[i][j] != nullptr && _star[i][j]->getStatus())
 			{
-				this->removeChild(star);
+				maxDelay = maxDelay > _star[i][j]->getBoomDelay() ? maxDelay : _star[i][j]->getBoomDelay();
+				_star[i][j]->playParticleEffect();
 				_star[i][j] = nullptr;
 			}
 		}
 	}
-	//更新剩余星星的位置
-	updateLeftStarPosition();
-	//计算分数以及通关状态
-	updateScore();
+
+
+	//important 序列动作的回调函数需要使用CallFunc来封装lambda
+	auto callfunc = CallFunc::create([this]{
+		//更新剩余星星的位置
+		this->updateLeftStarPosition();
+		//播放Combo特效
+		this->playComboEffect();
+		//计算分数以及通关状态
+		this->updateScore();
+		//重新启用定时检查
+		this->schedule(schedule_selector(StarMatrix::updateCheck), 0.5f);
+	});
+
+	this->runAction(Sequence::create(DelayTime::create(maxDelay), callfunc, nullptr));
 }
 
 void StarMatrix::updateLeftStarPosition()
@@ -214,11 +232,8 @@ void StarMatrix::updateLeftStarPosition()
 				if (xoffset > 0 || yoffset > 0)
 				{
 					_star[x][y]->runAction(MoveTo::create(0.5f, _star[x][y]->getPosition() - Vec2(starSize.width * xoffset, starSize.height * yoffset)));
-					_star[x][y]->setXOffset(0);
-					_star[x][y]->setYOffset(0);
-
-					_star[x][y]->setX(x - xoffset);
-					_star[x][y]->setY(y - yoffset);
+					_star[x][y]->setXYOffset(0, 0);
+					_star[x][y]->setXY(x - xoffset, y - yoffset);
 					_star[x - xoffset][y - yoffset] = _star[x][y];
 					_star[x][y] = nullptr;
 				}
@@ -233,6 +248,12 @@ void StarMatrix::updateScore()
 	//分数 = 数量 * 数量 * 5
 	int score = selectedCount * selectedCount * 5;
 	GameData::getInstance()->setScore(score);
+
+	if (GameData::getInstance()->getTongGuanState() && !_stageClearPlayed)
+	{
+		_stageClearPlayed = true;
+		GameAudio::getInstance()->PlayStageClear();
+	}
 }
 
 bool StarMatrix::checkEnded()
@@ -319,8 +340,47 @@ void StarMatrix::updateCheck(float delta /*= 0*/)
 		{
 			GameData::getInstance()->setScore(leftScore);
 		}
+
+		this->unschedule(schedule_selector(StarMatrix::updateCheck));
+		
 		GameScene* scene = (GameScene *)this->getParent();
 		scene->TongGuan();
 	}
+}
+
+void StarMatrix::playComboEffect()
+{
+	if (selectedCount < 5)
+	{
+		return;
+	}
+	Size visibleSize = Director::getInstance()->getVisibleSize();
+	Sprite* comboSprite;
+	if (selectedCount >= 10)
+	{
+		comboSprite = Sprite::create("combo_3.png");
+	}
+	else if (selectedCount >= 7)
+	{
+		comboSprite = Sprite::create("combo_2.png");
+	}
+	else
+	{
+		comboSprite = Sprite::create("combo_1.png");
+	}
+	if (comboSprite == nullptr)
+	{
+		CCLOG("combo resource not found!");
+		return;
+	}
+	comboSprite->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
+	this->addChild(comboSprite);
+
+	Blink* blink = Blink::create(1.0f, 5);
+	CallFunc* remove = CallFunc::create([=](){comboSprite->removeFromParent(); });
+	Sequence* action = Sequence::create(blink, remove, nullptr);
+	comboSprite->runAction(action);
+
+	GameAudio::getInstance()->PlayFire();
 }
 
