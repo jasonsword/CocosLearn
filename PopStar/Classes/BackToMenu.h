@@ -9,6 +9,9 @@ public:
 
     virtual bool init();
 
+	void resumeMenuItem(cocos2d::Ref* pSender);
+	void saveAndExitMenuItem(cocos2d::Ref* pSender);
+
 	CREATE_FUNC(BackToMenu);
 };
 

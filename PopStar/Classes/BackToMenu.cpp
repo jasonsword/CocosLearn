@@ -1,6 +1,7 @@
 ﻿#include "BackToMenu.h"
 #include "GameData.h"
 #include "MenuScene.h"
+#include "GameScene.h"
 
 USING_NS_CC;
 
@@ -15,19 +16,11 @@ bool BackToMenu::init()
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 	Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
-	//继续刚才的
-	auto resumeBtn = MenuItemImage::create("", "", [this](Ref* pSender){
-		//CCLOG("go on!");
-		this->removeFromParent();
-	});
-	resumeBtn->setNormalSpriteFrame(SpriteFrameCache::getInstance()->getSpriteFrameByName("resume.png"));
+	//重新开始
+	auto resumeBtn = MenuScene::CreateMenuItem("resume.png", CC_CALLBACK_1(BackToMenu::resumeMenuItem, this));
 
 	//退出并保存
-	auto saveAndExitBtn = MenuItemImage::create("", "", [](Ref* pSender){
-		GameData::getInstance()->save();
-		Director::getInstance()->replaceScene(MenuScene::createScene());
-	});
-	saveAndExitBtn->setNormalSpriteFrame(SpriteFrameCache::getInstance()->getSpriteFrameByName("save_exit.png"));
+	auto saveAndExitBtn = MenuScene::CreateMenuItem("save_exit.png", CC_CALLBACK_1(BackToMenu::saveAndExitMenuItem, this));
 
 	auto menu = Menu::create(resumeBtn, saveAndExitBtn, nullptr);
 	//menu->alignItemsVertically();
@@ -45,6 +38,21 @@ bool BackToMenu::init()
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
 
     return true;
+}
+
+void BackToMenu::resumeMenuItem(cocos2d::Ref* pSender)
+{
+	GameScene* gameScene = (GameScene*)this->getParent();
+	gameScene->save();
+	GameData::getInstance()->init(GameData::PlayType::NEW);
+	Director::getInstance()->replaceScene(GameScene::createScene());
+}
+
+void BackToMenu::saveAndExitMenuItem(cocos2d::Ref* pSender)
+{
+	GameScene* gameScene = (GameScene*)this->getParent();
+	gameScene->save();
+	Director::getInstance()->replaceScene(MenuScene::createScene());
 }
 
 

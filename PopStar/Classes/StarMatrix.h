@@ -27,10 +27,13 @@ public:
 	bool checkOne(int x, int y);
 	int getLeftCount();
 
+	void saveGameData();
+
 	CREATE_FUNC(StarMatrix);
 
 private:
 	void createMatrix();
+	void createMatrixByHistory();
 
 private:
 	Star* _star[ROW_NUM][COL_NUM];

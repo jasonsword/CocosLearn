@@ -42,6 +42,9 @@
     <ClCompile Include="..\Classes\StarMatrix.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\XmlData.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -72,6 +75,9 @@
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\StarMatrix.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\XmlData.h">
       <Filter>src</Filter>
     </ClInclude>
   </ItemGroup>

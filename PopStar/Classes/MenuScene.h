@@ -14,13 +14,15 @@ public:
 
 	void CreateBgParticle(cocos2d::Vec2 &position, const std::string &particleName);
 
+	//加const限定才能传参引用
+	static cocos2d::MenuItemImage* CreateMenuItem(const std::string& normalImage, const cocos2d::ccMenuCallback& callback);
+
+	void exitMenuItem(cocos2d::Ref* pSender);
+	void resumeMenuItem(cocos2d::Ref* pSender);
+	void newMenuItem(cocos2d::Ref* pSender);
+
     // implement the "static create()" method manually
 	CREATE_FUNC(MenuScene);
-
-
-	
-
-
 
 };
 

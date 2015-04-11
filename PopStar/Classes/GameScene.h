@@ -14,7 +14,10 @@ public:
 
     virtual bool init();
 	void onEnter();
+	
 	void createGameByStage(int stage);
+	void save();
+
 	void floatWords(const std::string &text, float time = 1.0f, cocos2d::CallFunc* callfunc = nullptr);
 	void floatGameOver(cocos2d::CallFunc* callfunc = nullptr);
 

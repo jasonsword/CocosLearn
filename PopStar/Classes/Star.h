@@ -14,7 +14,8 @@ public:
 		BLUE,
 		PURPLE
 	};
-	static Star* createStar();
+	static Star* create();
+	static Star* create(StarColor color);
 
 	static std::string getImage(StarColor color);
 	static StarColor generateColor();
@@ -23,8 +24,7 @@ public:
 	void playParticleEffect();
 
 	virtual bool init();
-
-	CREATE_FUNC(Star);
+	bool initWithColor(StarColor color);
 
 	inline StarColor getStarColor() const { return _starcolor; }
 	inline void setStarColor(StarColor color) { _starcolor = color; }

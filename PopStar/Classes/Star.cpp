@@ -1,13 +1,27 @@
 ﻿#include "Star.h"
 #include "StarMatrix.h"
 #include "GameResource.h"
+#include "GameData.h"
 
 USING_NS_CC;
 
-Star* Star::createStar()
+Star* Star::create()
 {
-	auto star = Star::create();
-	if (star)
+	auto star = new Star();
+
+	StarColor color = Star::generateColor();
+	if (star && star->initWithColor(color))
+	{
+		return star;
+	}
+	CC_SAFE_DELETE(star);
+	return nullptr;
+}
+
+Star* Star::create(StarColor color)
+{
+	auto star = new Star();
+	if (star && star->initWithColor(color))
 	{
 		return star;
 	}
@@ -39,9 +53,20 @@ Star::StarColor Star::generateColor()
 	return (Star::StarColor)random<int>(Star::RED, Star::PURPLE);
 }
 
+bool Star::initWithColor(StarColor color)
+{
+	this->setStarColor(color);
+
+	return this->init();
+}
+
 bool Star::init()
 {
-	_starcolor = generateColor();
+	if (GameData::getInstance()->getPlayType() == GameData::PlayType::NEW)
+	{
+		_starcolor = generateColor();
+	}
+	
 	if (!Sprite::initWithSpriteFrameName(getImage(_starcolor)))
 	{
 		return false;

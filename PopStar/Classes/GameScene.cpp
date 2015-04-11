@@ -152,3 +152,10 @@ void GameScene::floatGameOver(cocos2d::CallFunc* callfunc /*= nullptr*/)
 	);
 }
 
+void GameScene::save()
+{
+	StarMatrix* matrix = (StarMatrix*)this->getChildByName(String::createWithFormat("stage%d", GameData::getInstance()->getStage())->_string);
+	matrix->saveGameData();
+
+	GameData::getInstance()->save();
+}

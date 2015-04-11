@@ -27,21 +27,56 @@ void StarMatrix::createMatrix()
 	float width = visibleSize.width / COL_NUM;
 	starSize = Size(width, width);
 
-	for (int j = 0; j < COL_NUM; j++)
+	Star::StarColor color = Star::generateColor();
+
+	for (int y = 0; y < COL_NUM; y++)
 	{
-		for (int i = 0; i < ROW_NUM; i++)
+		for (int x = 0; x < ROW_NUM; x++)
 		{
-			auto star = Star::createStar();
-			star->setXY(i, j);
+			auto star = Star::create();
+			star->setXY(x, y);
 			star->setContentSize(starSize);
 			//这里添加下落的动作 直到终点
-			Vec2 dest = Vec2((i + 0.5f) * width, (j + 0.5f) * width);
-			star->setPosition(dest + Vec2(0, width * (j + 1)));
+			Vec2 dest = Vec2((x + 0.5f) * width, (y + 0.5f) * width);
+			star->setPosition(dest + Vec2(0, width * (y + 1)));
 			star->runAction(MoveTo::create(0.25, dest));
 			this->addChild(star);
 
 			//一维是x 二维是y
-			_star[i][j] = star;
+			_star[x][y] = star;
+
+			color = Star::generateColor();
+		}
+	}
+}
+
+void StarMatrix::createMatrixByHistory()
+{
+	Size visibleSize = Director::getInstance()->getVisibleSize();
+	float width = visibleSize.width / COL_NUM;
+	starSize = Size(width, width);
+
+	for (int y = 0; y < COL_NUM; y++)
+	{
+		for (int x = 0; x < ROW_NUM; x++)
+		{
+			if (!GameData::getInstance()->getStar(x, y))
+			{
+				_star[x][y] = nullptr;
+				continue;
+			}
+			auto star = Star::create(GameData::getInstance()->getStarColor(x, y));
+			star->setStarColor(GameData::getInstance()->getStarColor(x, y));
+			star->setXY(x, y);
+			star->setContentSize(starSize);
+			//这里添加下落的动作 直到终点
+			Vec2 dest = Vec2((x + 0.5f) * width, (y + 0.5f) * width);
+			star->setPosition(dest + Vec2(0, width * (y + 1)));
+			star->runAction(MoveTo::create(0.25, dest));
+			this->addChild(star);
+
+			//一维是x 二维是y
+			_star[x][y] = star;
 		}
 	}
 }
@@ -54,7 +89,14 @@ void StarMatrix::onEnter()
 
 	auto delay = DelayTime::create(0.5f);
 	auto callfunc = CallFunc::create([this](){
-		this->createMatrix();
+		if (GameData::getInstance()->getPlayType() == GameData::PlayType::NEW)
+		{
+			this->createMatrix();
+		}
+		else if (GameData::getInstance()->getPlayType() == GameData::PlayType::LAST)
+		{
+			this->createMatrixByHistory();
+		}
 	});
 	auto delay2 = DelayTime::create(3.0f);
 	auto callfunc2 = CallFunc::create([this](){
@@ -145,7 +187,7 @@ void StarMatrix::deleteSelectedStar()
 		return;
 	}
 	//先禁用定时检查，防止冲突
-	this->unschedule(schedule_selector(StarMatrix::updateCheck));
+	//this->unschedule(schedule_selector(StarMatrix::updateCheck));
 	float maxDelay = 0;// 最大延迟时间，防止和移动Action冲突
 	for (int j = 0; j < ROW_NUM; j++)
 	{
@@ -170,7 +212,7 @@ void StarMatrix::deleteSelectedStar()
 		//计算分数以及通关状态
 		this->updateScore();
 		//重新启用定时检查
-		this->schedule(schedule_selector(StarMatrix::updateCheck), 0.5f);
+		//this->schedule(schedule_selector(StarMatrix::updateCheck), 0.5f);
 	});
 
 	this->runAction(Sequence::create(DelayTime::create(maxDelay), callfunc, nullptr));
@@ -382,5 +424,23 @@ void StarMatrix::playComboEffect()
 	comboSprite->runAction(action);
 
 	GameAudio::getInstance()->PlayFire();
+}
+
+void StarMatrix::saveGameData()
+{
+	for (int x = 0; x < COL_NUM; x++)
+	{
+		for (int y = 0; y < ROW_NUM; y++)
+		{
+			if (_star[x][y] != nullptr)
+			{
+				GameData::getInstance()->setStarInfo(x, y, true, _star[x][y]->getStarColor());
+			}
+			else
+			{
+				GameData::getInstance()->setStarInfo(x, y, false);
+			}
+		}
+	}
 }
 
