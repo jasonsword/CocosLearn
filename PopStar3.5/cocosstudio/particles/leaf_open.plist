@@ -15,7 +15,7 @@
     <key>emitterType</key>
     <real>0</real>
     <key>emissionRate</key>
-    <real>正无穷大</real>
+    <real>10000</real>
     <key>finishColorAlpha</key>
     <real>1</real>
     <key>finishColorBlue</key>
@@ -29,7 +29,7 @@
     <key>finishColorVarianceBlue</key>
     <real>0.3294118</real>
     <key>finishColorVarianceGreen</key>
-    <real>0.345098</real>
+    <real>0.3411765</real>
     <key>finishColorVarianceRed</key>
     <real>1</real>
     <key>rotationStart</key>
@@ -87,7 +87,7 @@
     <key>startColorBlue</key>
     <real>0.3294118</real>
     <key>startColorGreen</key>
-    <real>0.345098</real>
+    <real>0.3411765</real>
     <key>startColorRed</key>
     <real>1</real>
     <key>startColorVarianceAlpha</key>
@@ -107,8 +107,8 @@
     <key>tangentialAcceleration</key>
     <real>0</real>
     <key>textureFileName</key>
-    <string>star2d.png</string>
+    <string>fire.png</string>
+    <key>textureImageData</key>
+    <string>eJwBOgTF+4lQTkcNChoKAAAADUlIRFIAAAAgAAAAIAgGAAAAc3p69AAAAAFzUkdCAK7OHOkAAAAGYktHRAD/AP8A/6C9p5MAAAAJcEhZcwAACxMAAAsTAQCanBgAAAAHdElNRQfZAxsUFCLZvNAUAAADuklEQVRYw+2XP2icdRjHP9/3ksv/mhgoZrBDoBY7VFocRKhuXQS7uCiiXRQFO7gpjg6pIrSDIBQRBUctioLUQVBBKg4tUhDxz+JQqKZNm+Ryl7u8X5fnlSdvL8mlULp48MDB/X6/5/P8fw7u8ke7vWB7BCjirgCHlJI6dwQglA4DQyGNPgAbQC+kOyhM0UfZyfS9aXsSmASmgHtCpoGZJNPptylg0vak7eZ27xPW1A98X5blVUn7gNGQMWAkpFnzQrZ+HeiErAFt24Wkdrx9FTi2LUBRFJdsvwH8DRwFWsB4QIwGxFYAHaAdyquQFbb32r5s+2RRFJd28sAo8CnwKHAReKIGUXmhDrCeLK9ypgHcB/wk6T1JH22bhBGz8RTzM8Ax2y9JWonfRpN1FUAP6Ib1LWAVWAGmbJ+T9DlwAmhJWt8OoEq4PSmp3rT9iKQPgV8GBFgBDtl+FfhG0svATWAlDLkVIEotK5+uxPZpYDos+TO5uALoJvevAgdsPwcsSnoKWAJuJIhOP4BcajM12WP7NWBK0rfAlciDAigj/pXyfbafBJYkvQJcT3IDWM5eKGoJ2QzrqtIbD5mIBGrZfhw4CMwmuTdAHwrly5IW+lRPs574RXL/UA1ipNYHJiR9DXRsHwLma8ofsH0UWJX0frpb7x9DoW9TGRZRMkM1kOGQkcojkn62fdj2/eHm5Xh0DmhL+iLlyHBWnPpHUQ9B1dcrkEYNaDiHR9KVGD7TtvcCc9H/f0zgWWEjKVbOvTrAdlJkT0laA5A0YntD0m/pzCDvbQLwAFKGVG1XkT9IakQFVWcGea8vQKVgoz5eU6ttR8zHw/K/bPciJ2biXDfdze+VWwGUNYW99FBuMi1gIhKuK+nXSMSLqTrm4nw3gfdqQOUmgOhMvT4jtZ2m2yowa/tgZPsPwCJwDbgu6avUJ+bT3eqt/0ByJ8yNqFdzc2VxK3W4qs4/C+WLNYgPgGXbx4EH4+5aAqkg+m5E3dpIzVPtQOpwZ0PhIvBPAlgCbko6BSzZPgEcSRCdFNZdTcPDtt+OWC8MOg1tvyNpFngeuLDjNNxiH5gHvgQuA6duYx94y/YRSQ8Df+y4D6SNaBzYb/uCpPNJ+aAbUYZYsH1c0n5Jvw+0ltses92SdA54/TZ3wlaSd20/XRTFLfqGtljXr0l6AfgklFbu3fVWHCX7jO3zttckje0UgrPAx5K+i5xoJsV5shUJoKz1kQpkPcfc9mPAs5Je3BKgLMtGURQbd+qfUf39u/7f8P/PvxzOPZ3RFMf4AAAAAElFTkSuQmCCgubjXQ==</string>
   </dict>
-</plist>whncAHw5QQ83tpxk6nFI0l9sX5J0a3q/k6ATZkemiCillMlXIpCeLwNHgJW0Iw2JMTCyfV7SeUkPJvjlxvMarZorRM/iukjMEcgzX0qwFeAW4OgCiaX0bg04YfuapE3g1vR+i1mu7G8NOCK8mBOLEVgkcBQ4AzwIXGqiMJB0v+11+lw4LWktCYyBu2w/IukFwMxXyMEEstTGzM6+HsH5iPhlKeUl4BjwLjC2HZJuB9ZsHwKO5xqAH0q6s9lnWi0i5kq0jcCQWcm1JC5GxKSU8nSG/QtgWdIdwDrQJdgV26uSnrT9pqTnc7/DzJJzlDgHEhg0BGoi1go4afsfklZt/wK4KGlg+zZJG/n+Y5IK8L6kqxmRtipqCc8d+6AJ/2CBRCWyJOlDYDNBVoA7bY8lTYFDtm8HTuT7r0q6RC9US8zrxwAYRMS4HkNlI/qSGSwQGaaNba8A/5L0GXAuvdwDopRyrpTyUWrChFmlVOAl5mVcNMAw0/VTwOlc/Kztu4Gf275L0gVJR9PTzXpEtlciYgO4RZKAh4B7bP8UOGf7ceDRBH44ScwrcEQciYg7IuJPXdetR8RfIyK6rrsSEdOI2IqI3a7rphGx13Xddtd1joiwHRExiYguIq7l81qu/yDv73ZddzH/uxARtVr2Veowvejcm8mzBDwD/BH4me1/Svqx7SvAGUlDeo0YRgSllDXby5IuAqdsvy7pNtvvZM58ALySUXsb2CilbLUElpPAcWAVOEmvbKsZ8tXGfgD8CNiwLUkdvT58DLwFfN7YF3n/DLiSv9eTwKTNgUW1mtIrVhWQHWBi+yxw1vZ/bE8ljWwPgMu2jwI/sb2a70+bffYa6xJvloRZEq1U1pa6nXbS9j2SdiJiKOk9SX8D1iV9BFyW1CWZY8D9CbTd7LVPpFXC/XJYAK/iMaFvLhullEdsH4+Il21/SK+SJ4H70qNXJf1B0gX6/vHfXFvngpbE/tWqUg1X21JHts9Keiwifg2cyKYzBjboE3ED+HeuWwV+A5y2/YSkFxsSlcD0QAKllJ2IGDIbJoZk1wOmkn7HfDs+a/uMpD3gDeAT+kTcAk5Jeiq93WxJLM6Kc4KQ80Dbio9x/VBSCSwBT9Jn9u/TszoPbALXgKsZoav5vHXTeaCUshsRYjZ2Qw4TGb7a70e2z0l6OIH/nN7X46u2UYHpZ8PrBtTrRrJSynZEtOB12FxmlhsDSX8Hfgt8CrzDfOXU5K02udFgeuBQWkqZRET1vOrCvvdp67aHkj6lnxMWS/jrT8VNJFoC7XfBKF87ZntF0ucZqVpJ//93QXt9Z19GNyHzjX0bfn99CTrWlW94yEJzAAAAAElFTkSuQmCCBe5eBQ==</string>
-</dict>
-</plist>
+</plist>/plist>

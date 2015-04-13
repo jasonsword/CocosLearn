@@ -1,5 +1,7 @@
-#include "AppDelegate.h"
-#include "HelloWorldScene.h"
+﻿#include "AppDelegate.h"
+#include "MenuScene.h"
+#include "GameResource.h"
+
 
 USING_NS_CC;
 
@@ -27,11 +29,11 @@ bool AppDelegate::applicationDidFinishLaunching() {
     auto director = Director::getInstance();
     auto glview = director->getOpenGLView();
     if(!glview) {
-        glview = GLViewImpl::createWithRect("PopStar3.5", Rect(0, 0, 640, 960));
+        glview = GLViewImpl::createWithRect("PopStar3.5", Rect(0, 0, 720, 1280), 0.75f);
         director->setOpenGLView(glview);
     }
 
-    director->getOpenGLView()->setDesignResolutionSize(640, 960, ResolutionPolicy::SHOW_ALL);
+    director->getOpenGLView()->setDesignResolutionSize(720, 1280, ResolutionPolicy::SHOW_ALL);
 
     // turn on display FPS
     director->setDisplayStats(true);
@@ -41,8 +43,10 @@ bool AppDelegate::applicationDidFinishLaunching() {
 
     FileUtils::getInstance()->addSearchPath("res");
 
+	// 场景创建之前完成常用资源的加载
+	GameResource::Load();
     // create a scene. it's an autorelease object
-    auto scene = HelloWorld::createScene();
+    auto scene = MenuScene::createScene();
 
     // run
     director->runWithScene(scene);

@@ -36,6 +36,18 @@
           <Image Name="combo_2.png" />
           <Image Name="combo_3.png" />
         </Folder>
+        <Folder Name="particles">
+          <File Name="leaf_open.plist" />
+          <PlistParticleFile Name="quanquan.plist" />
+          <PlistParticleFile Name="spark.plist" />
+          <Image Name="fire.png" />
+          <Image Name="star1d.png" />
+          <Image Name="star2d.png" />
+          <Image Name="star3d.png" />
+          <Image Name="star4d.png" />
+          <Image Name="star5d.png" />
+          <File Name="test.plist" />
+        </Folder>
       </RootFolder>
     </Group>
   </SolutionFolder>

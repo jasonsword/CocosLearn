@@ -22,6 +22,26 @@
             <PreSize X="0.0000" Y="0.0000" />
             <FileData Type="Normal" Path="images/bg_main.png" />
           </NodeObjectData>
+          <NodeObjectData Name="Particle_1" ActionTag="-1441506347" FrameEvent="" Tag="43" LeftMargin="204.1703" RightMargin="515.8297" TopMargin="369.9922" BottomMargin="910.0078" ctype="ParticleObjectData">
+            <Position X="204.1703" Y="910.0078" />
+            <Scale ScaleX="2.6667" ScaleY="2.5385" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <Size X="0.0000" Y="0.0000" />
+            <PrePosition X="0.2836" Y="0.7109" />
+            <PreSize X="0.0000" Y="0.0000" />
+            <FileData Type="Default" Path="Default/defaultParticle.plist" />
+          </NodeObjectData>
+          <NodeObjectData Name="Particle_2" ActionTag="-1369847823" FrameEvent="" Tag="44" LeftMargin="534.1611" RightMargin="185.8389" TopMargin="230.0000" BottomMargin="1050.0000" ctype="ParticleObjectData">
+            <Position X="534.1611" Y="1050.0000" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <Size X="0.0000" Y="0.0000" />
+            <PrePosition X="0.7419" Y="0.8203" />
+            <PreSize X="0.0000" Y="0.0000" />
+            <FileData Type="Normal" Path="particles/quanquan.plist" />
+          </NodeObjectData>
           <NodeObjectData Name="pop_4" ActionTag="73262753" FrameEvent="" Tag="40" HorizontalEdge="BothEdge" VerticalEdge="TopEdge" LeftMargin="28.4110" RightMargin="237.5890" TopMargin="37.7494" BottomMargin="964.2506" ctype="SpriteObjectData">
             <Position X="255.4110" Y="1103.2506" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
