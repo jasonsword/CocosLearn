@@ -1,0 +1,42 @@
+<Solution>
+  <PropertyGroup Name="PopStar3.5" Version="2.2.1.0" Type="CocosStudio" />
+  <SolutionFolder>
+    <Group ctype="ResourceGroup">
+      <RootFolder Name=".">
+        <Project Name="MenuScene.csd" Type="Scene" />
+        <Project Name="GameScene.csd" Type="Scene" />
+        <Project Name="TopMenu.csd" Type="Layer" />
+        <Folder Name="fonts">
+          <Fnt Name="s_number_member_small.fnt" />
+          <Fnt Name="s_number_score.fnt" />
+          <Fnt Name="titleinfo.fnt" />
+        </Folder>
+        <Folder Name="images">
+          <PlistImageFolder PListFile="star_packer.plist" Name=".star_packer_PList.Dir">
+            <PlistImageFile Name="icon.png" Key="icon.png" />
+            <PlistImageFile Name="newgame.png" Key="newgame.png" />
+            <PlistImageFile Name="pause.png" Key="pause.png" />
+            <PlistImageFile Name="pop.png" Key="pop.png" />
+            <PlistImageFile Name="rate.png" Key="rate.png" />
+            <PlistImageFile Name="resume.png" Key="resume.png" />
+            <PlistImageFile Name="sound.png" Key="sound.png" />
+            <PlistImageFile Name="star.png" Key="star.png" />
+            <PlistImageFile Name="star_b.png" Key="star_b.png" />
+            <PlistImageFile Name="star_g.png" Key="star_g.png" />
+            <PlistImageFile Name="star_p.png" Key="star_p.png" />
+            <PlistImageFile Name="star_r.png" Key="star_r.png" />
+            <PlistImageFile Name="star_y.png" Key="star_y.png" />
+            <PlistImageFile Name="ui1.png" Key="ui1.png" />
+            <PlistImageFile Name="ui2.png" Key="ui2.png" />
+            <PlistImageFile Name="ui3.png" Key="ui3.png" />
+            <PlistImageFile Name="save_exit.png" Key="save_exit.png" />
+          </PlistImageFolder>
+          <Image Name="bg_main.png" />
+          <Image Name="combo_1.png" />
+          <Image Name="combo_2.png" />
+          <Image Name="combo_3.png" />
+        </Folder>
+      </RootFolder>
+    </Group>
+  </SolutionFolder>
+</Solution>
