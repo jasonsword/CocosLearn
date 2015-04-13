@@ -8,7 +8,6 @@ static GameAudio* _gameAudio = nullptr;
 void GameResource::Load()
 {
 	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("star_packer.plist");
-	SpriteFrameCache::getInstance()->addSpriteFrame(SpriteFrame::create());
 	GameAudio::getInstance()->PreLoad();
 }
 
