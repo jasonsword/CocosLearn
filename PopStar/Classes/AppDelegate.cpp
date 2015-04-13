@@ -31,6 +31,8 @@ bool AppDelegate::applicationDidFinishLaunching() {
         //glview = GLViewImpl::create("PopStar");
 		glview = GLViewImpl::createWithRect("PopStar", Rect(0, 0, 720, 1280), 0.5f);
         director->setOpenGLView(glview);
+
+		glview->setDesignResolutionSize(720, 1280, ResolutionPolicy::FIXED_HEIGHT);
     }
 
     // turn on display FPS

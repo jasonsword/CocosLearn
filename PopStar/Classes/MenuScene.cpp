@@ -48,7 +48,7 @@ bool MenuScene::init()
 	backgroundPop->addChild(backgroundStar);
 
 	float xoffset = visibleSize.width / 2 - (backgroundPop->getContentSize().width / 2 + backgroundStar->getContentSize().width / 10) / 2 + 15;
-	backgroundPop->setPosition(xoffset, visibleSize.height- backgroundPop->getContentSize().height);
+	backgroundPop->setPosition(xoffset, visibleSize.height - backgroundPop->getContentSize().height);
 
 	this->addChild(backgroundPop);
 	

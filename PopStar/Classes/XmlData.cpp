@@ -50,15 +50,17 @@ void XmlData::parseStarInfo()
 	int errorno = _doc->LoadFile(strPath.c_str());
 	if (errorno != 0)
 	{
-		CCLOG("xml doc parse error no:%d", errorno);
+		CCLOG("xml doc parse error errorno:%d", errorno);
 		return;
 	}
+
 	auto root = _doc->RootElement();
 	if (root == 0)
 	{
 		CCLOG("xml doc parse error root not found!");
 		return;
 	}
+
 	auto starRoot = root->FirstChildElement("starRoot");
 	if (starRoot == 0)
 	{
@@ -66,16 +68,14 @@ void XmlData::parseStarInfo()
 		return;
 	}
 
-	for (starRoot = root->FirstChildElement("starRoot"); starRoot; starRoot = starRoot->NextSiblingElement("starRoot"))
+	for (auto star = starRoot->FirstChildElement(); star; star = star->NextSiblingElement())
 	{
-		for (auto star = starRoot->FirstChildElement(); star; star = star->NextSiblingElement())
-		{
-			int x = star->IntAttribute("x");
-			int y = star->IntAttribute("y");
-			_starinfo[x][y].color = (Star::StarColor)star->IntAttribute("color");
-			_starinfo[x][y].exists = star->BoolAttribute("exists");
-		}
+		int x = star->IntAttribute("x");
+		int y = star->IntAttribute("y");
+		_starinfo[x][y].color = (Star::StarColor)star->IntAttribute("color");
+		_starinfo[x][y].exists = star->BoolAttribute("exists");
 	}
+	
 }
 
 void XmlData::saveStarInfo()
@@ -114,7 +114,7 @@ void XmlData::saveStarInfo()
 	root->InsertEndChild(starRoot);
 
 	std::string strPath = FileUtils::getInstance()->getWritablePath() + "data.xml";
-	CCLOG("SAVE PATH: %s", strPath.c_str());
+	//CCLOG("SAVE PATH: %s", strPath.c_str());
 	_doc->SaveFile(strPath.c_str());
 }
 
