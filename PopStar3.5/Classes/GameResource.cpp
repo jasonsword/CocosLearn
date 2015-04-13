@@ -9,6 +9,7 @@ static GameAudio* _gameAudio = nullptr;
 void GameResource::Load()
 {
 	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("star_packer.plist");
+	SpriteFrameCache::getInstance()->addSpriteFrame(SpriteFrame::create("images/star_exit.png", Rect(0, 0, 390, 92)),"star_exit.png");
 
 	auto strPaths = FileUtils::getInstance()->getSearchPaths();
 	for (auto strPath : strPaths)

@@ -35,11 +35,9 @@ bool GameScene::init()
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 	Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
-	/*初始化背景*/
-	auto background = Sprite::create("bg_main.png");
-	background->setPosition(visibleSize.width / 2, visibleSize.height / 2);
-	this->addChild(background, -1);
-    
+	auto rootNode = CSLoader::createNode("GameScene.csb");
+	addChild(rootNode, -1);
+
 	auto topmenu = TopMenu::create();
 	topmenu->setName("topmenu");
 	this->addChild(topmenu);
@@ -155,7 +153,10 @@ void GameScene::floatGameOver(cocos2d::CallFunc* callfunc /*= nullptr*/)
 void GameScene::save()
 {
 	StarMatrix* matrix = (StarMatrix*)this->getChildByName(String::createWithFormat("stage%d", GameData::getInstance()->getStage())->_string);
-	matrix->saveGameData();
+	if (matrix)
+	{
+		matrix->saveGameData();
+	}
 
 	GameData::getInstance()->save();
 }

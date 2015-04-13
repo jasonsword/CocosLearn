@@ -3,7 +3,7 @@
   <Content ctype="GameProjectContent">
     <Content>
       <Animation Duration="0" Speed="1.0000" />
-      <ObjectData Name="Scene" FrameEvent="" RightMargin="-720.0000" TopMargin="-1280.0000" ctype="SingleNodeObjectData">
+      <ObjectData Name="MenuScene" FrameEvent="" RightMargin="-720.0000" TopMargin="-1280.0000" ctype="SingleNodeObjectData">
         <Position X="0.0000" Y="0.0000" />
         <Scale ScaleX="1.0000" ScaleY="1.0000" />
         <AnchorPoint />

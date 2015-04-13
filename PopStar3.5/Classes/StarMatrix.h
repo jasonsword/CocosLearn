@@ -27,6 +27,9 @@ public:
 	bool checkOne(int x, int y);
 	int getLeftCount();
 
+	inline bool getInitState(){ return _initcomplete; };
+	inline void setInitState(bool initcomplete){ _initcomplete = initcomplete; };
+
 	void saveGameData();
 
 	CREATE_FUNC(StarMatrix);
@@ -40,6 +43,8 @@ private:
 	int selectedCount;   //已选择的星星数量
 	
 	bool _stageClearPlayed;
+
+	bool _initcomplete;
 };
 
 #endif // __STAR_MATRIX_H__

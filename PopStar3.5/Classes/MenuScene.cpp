@@ -1,6 +1,4 @@
 ﻿#include "MenuScene.h"
-#include "cocostudio/CocoStudio.h"
-#include "ui/CocosGUI.h"
 #include "GameScene.h"
 #include "GameData.h"
 
@@ -42,7 +40,7 @@ bool MenuScene::init()
 	//继续上次的
 	auto resumeBtn = CreateMenuItem("resume.png", CC_CALLBACK_1(MenuScene::resumeMenuItem, this));
 	//退出
-	auto rateBtn = CreateMenuItem("save_exit.png", CC_CALLBACK_1(MenuScene::exitMenuItem, this));
+	auto rateBtn = CreateMenuItem("star_exit.png", CC_CALLBACK_1(MenuScene::exitMenuItem, this));
 
 	auto menu = Menu::create(startBtn, resumeBtn, rateBtn, nullptr);
 	//menu->alignItemsVertically();

@@ -1,8 +1,11 @@
 ﻿#include "TopMenu.h"
 #include "BackToMenu.h"
 #include "GameData.h"
+#include "ui/UITextBMFont.h"
 
 USING_NS_CC;
+
+using namespace ui;
 
 static std::string SMALL_NUM_FONT = "fonts/s_number_member_small.fnt";
 static std::string TITLE_FONT     = "fonts/titleinfo.fnt";
@@ -18,79 +21,53 @@ bool TopMenu::init()
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 	Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
-	createOne(HORIZONTAL, Vec2(140, visibleSize.height - 30),  "a", "ui3.png", "0",  "bestScore", 15, 2.0f);
-	createOne(HORIZONTAL, Vec2(80,  visibleSize.height - 100), "b", "ui2.png", "1",  "stage",     20);
-	createOne(HORIZONTAL, Vec2(400, visibleSize.height - 100), "c", "ui2.png", "0",  "target",    20, 1.2f);
-	createOne(VERTICAL,   Vec2(360, visibleSize.height - 250), "d", "ui1.png", "0",  "score",     40, 2.0f);
+	rootNode = CSLoader::createNode("TopMenu.csb");
+	//rootNode->setAnchorPoint(Vec2(0.5f, 0.5f));
+	rootNode->setPosition(Vec2(0, visibleSize.height - rootNode->getContentSize().height));
+	addChild(rootNode);
 
-	auto backtomenu = Sprite::createWithSpriteFrameName("pause.png");
-	backtomenu->setPosition(visibleSize.width - backtomenu->getContentSize().width, visibleSize.height - backtomenu->getContentSize().height);
+	auto backtomenu = rootNode->getChildByName("backToMenu");
 	
 	auto listener = EventListenerTouchOneByOne::create();
-	listener->onTouchBegan = [this](Touch *t, Event *e){
-		if (e->getCurrentTarget()->getBoundingBox().containsPoint(t->getLocation()))
+	listener->onTouchBegan = [=](Touch *t, Event *e){
+
+		Rect rect = e->getCurrentTarget()->getBoundingBox();
+		Vec2 pos = t->getLocation();
+
+		Vec2 pos2 = rootNode->convertToNodeSpace(pos);
+
+		CCLOG("rect x=%f y=%f width=%f height=%f", rect.origin.x, rect.origin.y, rect.size.width, rect.size.height);
+		CCLOG("x=%f y=%f", pos2.x, pos2.y);
+
+		if (rect.containsPoint(pos2))
 		{
-			//CCLOG("back to menu creat!");
+			CCLOG("back to menu creat!");
 			this->getParent()->addChild(BackToMenu::create(), 10);//优先级设置成10，以保证能吞并层下的事件
 		}
 		return false;
 	};
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener, backtomenu);
-	this->addChild(backtomenu);
 
 	updateGameData();
-	schedule(schedule_selector(TopMenu::updateGameData), 0.5);
+	schedule(schedule_selector(TopMenu::updateGameData), 0.5f);
 
     return true;
 }
 
-void TopMenu::createOne(TM_ORIENTTATION tm, 
-	Vec2 &titlePosition,
-	const std::string &titleName, 
-	const std::string &backgroundFile, 
-	const std::string &numberDefault, 
-	const std::string &nodeName, 
-	float bgOffsetY,
-	float scaleX)
-{
-	auto title = Label::createWithBMFont(TITLE_FONT, titleName);
-	title->setPosition(titlePosition);
-	this->addChild(title);
-
-	auto background = Sprite::createWithSpriteFrameName(backgroundFile);
-	background->setScaleX(scaleX);
-	background->setContentSize(Size(background->getContentSize().width * scaleX, background->getContentSize().height));
-	if (tm == HORIZONTAL)
-	{
-		background->setPosition(title->getPositionX() + title->getContentSize().width / 2 + background->getContentSize().width / 2 * scaleX + 20, 
-			title->getPositionY() - bgOffsetY);
-	}
-	else
-	{
-		background->setPosition(title->getPositionX() + background->getContentSize().width / 2 * (scaleX - 1.0f),
-			title->getPositionY() - title->getContentSize().height / 2 - background->getContentSize().height - bgOffsetY);
-	}
-	this->addChild(background);
-
-	auto number = Label::createWithBMFont(SMALL_NUM_FONT, numberDefault);
-	number->setName(nodeName);
-	number->setPosition(background->getPositionX() - background->getContentSize().width / 2 * (scaleX - 1.0f), 
-		background->getPositionY() + 10);
-	this->addChild(number);
-}
-
 void TopMenu::updateGameData(float delta)
 {
-	Label* bestScore = (Label *)this->getChildByName("bestScore");
-	bestScore->setString(String::createWithFormat("%d", GameData::getInstance()->getBestScore())->_string);
+	updateOne("bestScore", GameData::getInstance()->getBestScore());
+	updateOne("score", GameData::getInstance()->getScore());
+	updateOne("target", GameData::getInstance()->getTarget());
+	updateOne("stage", GameData::getInstance()->getStage());
+}
 
-	Label* score = (Label *)this->getChildByName("score");
-	score->setString(String::createWithFormat("%d", GameData::getInstance()->getScore())->_string);
-
-	Label* target = (Label *)this->getChildByName("target");
-	target->setString(String::createWithFormat("%d", GameData::getInstance()->getTarget())->_string);
-
-	Label* stage = (Label *)this->getChildByName("stage");
-	stage->setString(String::createWithFormat("%d", GameData::getInstance()->getStage())->_string);
+void TopMenu::updateOne(const std::string& name, const int& number)
+{
+	TextBMFont* text = dynamic_cast<TextBMFont *>(rootNode->getChildByName(name));
+	if (text)
+	{
+		text->setString(String::createWithFormat("%d", number)->_string);
+	}
 }
 

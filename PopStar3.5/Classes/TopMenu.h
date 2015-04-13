@@ -17,20 +17,12 @@ public:
     virtual bool init();
 
 	void updateGameData(float delta = 0);
-
-	//tm 方向是水平还是垂直
-	//titlePosition title的起始位置
-	//bgOffsetY 背景的垂直偏移
-	void createOne(TM_ORIENTTATION tm,
-		cocos2d::Vec2 &titlePosition,
-		const std::string &titleName, 
-		const std::string &backgroundFile,
-		const std::string &numberDefault,
-		const std::string &nodeName, 
-		float bgOffsetY = 0.0f,
-		float scaleX = 1.0f);
+	void updateOne(const std::string& name, const int& number);
 
 	CREATE_FUNC(TopMenu);
+
+private:
+	cocos2d::Node* rootNode;
 };
 
 #endif // __TOP_MENU_H__

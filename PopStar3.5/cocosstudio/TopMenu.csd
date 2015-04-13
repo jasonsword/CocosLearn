@@ -3,7 +3,7 @@
   <Content ctype="GameProjectContent">
     <Content>
       <Animation Duration="0" Speed="1.0000" />
-      <ObjectData Name="Layer" FrameEvent="" Tag="19" RightMargin="-720.0000" TopMargin="-360.0000" ctype="LayerObjectData">
+      <ObjectData Name="TopMenu" FrameEvent="" Tag="19" RightMargin="-720.0000" TopMargin="-360.0000" ctype="LayerObjectData">
         <Position X="0.0000" Y="0.0000" />
         <Scale ScaleX="1.0000" ScaleY="1.0000" />
         <AnchorPoint />

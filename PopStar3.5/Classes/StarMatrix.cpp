@@ -23,6 +23,8 @@ bool StarMatrix::init()
 
 void StarMatrix::createMatrix()
 {
+	_initcomplete = false;
+
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 	float width = visibleSize.width / COL_NUM;
 	starSize = Size(width, width);
@@ -52,6 +54,8 @@ void StarMatrix::createMatrix()
 
 void StarMatrix::createMatrixByHistory()
 {
+	_initcomplete = false;
+
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 	float width = visibleSize.width / COL_NUM;
 	starSize = Size(width, width);
@@ -100,6 +104,7 @@ void StarMatrix::onEnter()
 	});
 	auto delay2 = DelayTime::create(3.0f);
 	auto callfunc2 = CallFunc::create([this](){
+		this->setInitState(true);
 		this->schedule(schedule_selector(StarMatrix::updateCheck), 0.5f);
 	});
 	auto action = Sequence::create(delay,callfunc, delay2, callfunc2, nullptr);
@@ -428,6 +433,11 @@ void StarMatrix::playComboEffect()
 
 void StarMatrix::saveGameData()
 {
+	if (!this->getInitState())
+	{
+		return;
+	}
+
 	for (int x = 0; x < COL_NUM; x++)
 	{
 		for (int y = 0; y < ROW_NUM; y++)
