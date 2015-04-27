@@ -1,0 +1,26 @@
+//.proto文件编写规则：  
+//1）所有消息都需要包含msgbase这项，并编号都为1，即：  
+//  required MessageBase msgbase = 1;  
+//2）除了msgbase这项写成required外，其它所有项都写成optional。  
+
+//编译方式protoc -I=. --cpp_out=. Register.proto
+
+option java_package = "com.meteor.minaserver";  
+option java_outer_classname = "MessageBaseProtoBuf";  
+
+message MessageBase  
+{
+	enum Opcode
+	{
+		UNKNOWN = 0;
+		REGISTER = 1;
+		LOGIN = 2;
+		LOGOUT = 3;
+	}
+
+    required int32 majorVersion = 1;//主版本号
+    required int32 minurVersion = 2;//次版本号
+    required int32 buildVersion = 3;//编译版本号
+
+  	required Opcode code = 4 [default = UNKNOWN];//操作码
+}  

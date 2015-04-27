@@ -1,6 +1,7 @@
 ﻿#include "AppDelegate.h"
-#include "MenuScene.h"
-#include "GameResource.h"
+#include "scenes/LogInScene.h"
+#include "scenes/GameResource.h"
+#include "scenes/MenuScene.h"
 
 
 USING_NS_CC;
@@ -29,14 +30,14 @@ bool AppDelegate::applicationDidFinishLaunching() {
     auto director = Director::getInstance();
     auto glview = director->getOpenGLView();
     if(!glview) {
-        glview = GLViewImpl::createWithRect("PopStar3.5", Rect(0, 0, 720, 1280), 0.75f);
+        glview = GLViewImpl::createWithRect("PopStar3.5", Rect(0, 0, 720, 1280), 0.5f);
         director->setOpenGLView(glview);
     }
 
     director->getOpenGLView()->setDesignResolutionSize(720, 1280, ResolutionPolicy::SHOW_ALL);
 
     // turn on display FPS
-    director->setDisplayStats(true);
+    director->setDisplayStats(false);
 
     // set FPS. the default value is 1.0/60 if you don't call this
     director->setAnimationInterval(1.0 / 60);
@@ -46,7 +47,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
 	// 场景创建之前完成常用资源的加载
 	GameResource::Load();
     // create a scene. it's an autorelease object
-    auto scene = MenuScene::createScene();
+    auto scene = LogInScene::createScene();
 
     // run
     director->runWithScene(scene);

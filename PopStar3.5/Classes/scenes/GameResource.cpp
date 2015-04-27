@@ -1,6 +1,5 @@
 ﻿#include "GameResource.h"
 #include "SimpleAudioEngine.h"
-#include "cocostudio/CocoStudio.h"
 
 USING_NS_CC;
 

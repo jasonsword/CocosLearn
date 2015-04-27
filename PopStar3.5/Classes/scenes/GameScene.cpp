@@ -1,8 +1,8 @@
 ﻿#include "GameScene.h"
 #include "TopMenu.h"
 #include "StarMatrix.h"
-#include "GameData.h"
 #include "BackToMenu.h"
+#include "GameData.h"
 #include "GameResource.h"
 
 USING_NS_CC;

@@ -15,3 +15,4 @@ Release.win32/
 ipch/
 cocos2d/
 .metadata/
+protobuf-2.6.1/

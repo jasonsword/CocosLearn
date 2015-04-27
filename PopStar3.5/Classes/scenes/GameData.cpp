@@ -105,10 +105,10 @@ void GameData::reset()
 
 void GameData::setScore(int score)
 {
-	_score += score; 
+	_score += score;
 	if (_score > _bestScore)
 	{
-		_bestScore = _score; 
+		_bestScore = _score;
 		save();
 	}
 }
