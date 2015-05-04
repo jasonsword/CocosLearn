@@ -140,7 +140,6 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\connection\MessageBase.pb.cc" />
     <ClCompile Include="..\Classes\connection\ODSocket.cpp" />
     <ClCompile Include="..\Classes\connection\Register.pb.cc" />
-    <ClCompile Include="..\Classes\connection\RequestData.cpp" />
     <ClCompile Include="..\Classes\connection\WebSocketConnection.cpp" />
     <ClCompile Include="..\Classes\scenes\BackToMenu.cpp" />
     <ClCompile Include="..\Classes\scenes\GameData.cpp" />
@@ -160,7 +159,6 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\connection\MessageBase.pb.h" />
     <ClInclude Include="..\Classes\connection\ODSocket.h" />
     <ClInclude Include="..\Classes\connection\Register.pb.h" />
-    <ClInclude Include="..\Classes\connection\RequestData.h" />
     <ClInclude Include="..\Classes\connection\WebSocketConnection.h" />
     <ClInclude Include="..\Classes\scenes\BackToMenu.h" />
     <ClInclude Include="..\Classes\scenes\GameData.h" />

@@ -16,5 +16,13 @@
         <IsDebugKeystore Value="True" />
       </Value>
     </Item>
+    <Item Key="TabsParamsKey">
+      <Value ctype="TabsInfo">
+        <OpenedDocuments>
+          <FilePathData Path="LogIn.csd" />
+        </OpenedDocuments>
+        <ActiveDocument Path="LogIn.csd" />
+      </Value>
+    </Item>
   </Properties>
 </UserData>

@@ -76,12 +76,12 @@
             <PreSize X="0.0000" Y="0.0000" />
             <FontResource Type="Normal" Path="fonts/Avenir-Roman.ttf" />
           </NodeObjectData>
-          <NodeObjectData Name="error" ActionTag="-1196851679" FrameEvent="" Tag="10" LeftMargin="360.0000" RightMargin="360.0000" TopMargin="1030.0000" BottomMargin="250.0000" FontSize="36" LabelText="" HorizontalAlignmentType="HT_Center" VerticalAlignmentType="VT_Center" ctype="TextObjectData">
+          <NodeObjectData Name="error" ActionTag="-1196851679" FrameEvent="" Tag="10" LeftMargin="360.0000" RightMargin="360.0000" TopMargin="1030.0000" BottomMargin="250.0000" FontSize="36" LabelText="&#xA;" HorizontalAlignmentType="HT_Center" VerticalAlignmentType="VT_Center" ctype="TextObjectData">
             <Position X="360.0000" Y="250.0000" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <CColor A="255" R="255" G="0" B="0" />
-            <Size X="0.0000" Y="0.0000" />
+            <Size X="0.0000" Y="42.0000" />
             <PrePosition X="0.5000" Y="0.1953" />
             <PreSize X="0.0000" Y="0.0000" />
             <FontResource Type="Normal" Path="fonts/Avenir-Roman.ttf" />

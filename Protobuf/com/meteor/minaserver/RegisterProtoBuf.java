@@ -80,22 +80,50 @@ public final class RegisterProtoBuf {
         getNameBytes();
 
     /**
-     * <code>optional int32 sex = 5;</code>
+     * <code>optional int32 age = 5;</code>
+     */
+    boolean hasAge();
+    /**
+     * <code>optional int32 age = 5;</code>
+     */
+    int getAge();
+
+    /**
+     * <code>optional int32 sex = 6;</code>
      */
     boolean hasSex();
     /**
-     * <code>optional int32 sex = 5;</code>
+     * <code>optional int32 sex = 6;</code>
      */
     int getSex();
 
     /**
-     * <code>optional int32 telephone = 6;</code>
+     * <code>optional string telephone = 7;</code>
      */
     boolean hasTelephone();
     /**
-     * <code>optional int32 telephone = 6;</code>
+     * <code>optional string telephone = 7;</code>
      */
-    int getTelephone();
+    java.lang.String getTelephone();
+    /**
+     * <code>optional string telephone = 7;</code>
+     */
+    com.google.protobuf.ByteString
+        getTelephoneBytes();
+
+    /**
+     * <code>optional string idcard = 8;</code>
+     */
+    boolean hasIdcard();
+    /**
+     * <code>optional string idcard = 8;</code>
+     */
+    java.lang.String getIdcard();
+    /**
+     * <code>optional string idcard = 8;</code>
+     */
+    com.google.protobuf.ByteString
+        getIdcardBytes();
   }
   /**
    * Protobuf type {@code RegisterMsg}
@@ -182,12 +210,24 @@ public final class RegisterProtoBuf {
             }
             case 40: {
               bitField0_ |= 0x00000010;
-              sex_ = input.readInt32();
+              age_ = input.readInt32();
               break;
             }
             case 48: {
               bitField0_ |= 0x00000020;
-              telephone_ = input.readInt32();
+              sex_ = input.readInt32();
+              break;
+            }
+            case 58: {
+              com.google.protobuf.ByteString bs = input.readBytes();
+              bitField0_ |= 0x00000040;
+              telephone_ = bs;
+              break;
+            }
+            case 66: {
+              com.google.protobuf.ByteString bs = input.readBytes();
+              bitField0_ |= 0x00000080;
+              idcard_ = bs;
               break;
             }
           }
@@ -389,34 +429,118 @@ public final class RegisterProtoBuf {
       }
     }
 
-    public static final int SEX_FIELD_NUMBER = 5;
-    private int sex_;
+    public static final int AGE_FIELD_NUMBER = 5;
+    private int age_;
     /**
-     * <code>optional int32 sex = 5;</code>
+     * <code>optional int32 age = 5;</code>
      */
-    public boolean hasSex() {
+    public boolean hasAge() {
       return ((bitField0_ & 0x00000010) == 0x00000010);
     }
     /**
-     * <code>optional int32 sex = 5;</code>
+     * <code>optional int32 age = 5;</code>
+     */
+    public int getAge() {
+      return age_;
+    }
+
+    public static final int SEX_FIELD_NUMBER = 6;
+    private int sex_;
+    /**
+     * <code>optional int32 sex = 6;</code>
+     */
+    public boolean hasSex() {
+      return ((bitField0_ & 0x00000020) == 0x00000020);
+    }
+    /**
+     * <code>optional int32 sex = 6;</code>
      */
     public int getSex() {
       return sex_;
     }
 
-    public static final int TELEPHONE_FIELD_NUMBER = 6;
-    private int telephone_;
+    public static final int TELEPHONE_FIELD_NUMBER = 7;
+    private java.lang.Object telephone_;
     /**
-     * <code>optional int32 telephone = 6;</code>
+     * <code>optional string telephone = 7;</code>
      */
     public boolean hasTelephone() {
-      return ((bitField0_ & 0x00000020) == 0x00000020);
+      return ((bitField0_ & 0x00000040) == 0x00000040);
     }
     /**
-     * <code>optional int32 telephone = 6;</code>
+     * <code>optional string telephone = 7;</code>
      */
-    public int getTelephone() {
-      return telephone_;
+    public java.lang.String getTelephone() {
+      java.lang.Object ref = telephone_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        if (bs.isValidUtf8()) {
+          telephone_ = s;
+        }
+        return s;
+      }
+    }
+    /**
+     * <code>optional string telephone = 7;</code>
+     */
+    public com.google.protobuf.ByteString
+        getTelephoneBytes() {
+      java.lang.Object ref = telephone_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        telephone_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int IDCARD_FIELD_NUMBER = 8;
+    private java.lang.Object idcard_;
+    /**
+     * <code>optional string idcard = 8;</code>
+     */
+    public boolean hasIdcard() {
+      return ((bitField0_ & 0x00000080) == 0x00000080);
+    }
+    /**
+     * <code>optional string idcard = 8;</code>
+     */
+    public java.lang.String getIdcard() {
+      java.lang.Object ref = idcard_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        if (bs.isValidUtf8()) {
+          idcard_ = s;
+        }
+        return s;
+      }
+    }
+    /**
+     * <code>optional string idcard = 8;</code>
+     */
+    public com.google.protobuf.ByteString
+        getIdcardBytes() {
+      java.lang.Object ref = idcard_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        idcard_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
     }
 
     private void initFields() {
@@ -424,8 +548,10 @@ public final class RegisterProtoBuf {
       account_ = "";
       password_ = "";
       name_ = "";
+      age_ = 0;
       sex_ = 0;
-      telephone_ = 0;
+      telephone_ = "";
+      idcard_ = "";
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -469,10 +595,16 @@ public final class RegisterProtoBuf {
         output.writeBytes(4, getNameBytes());
       }
       if (((bitField0_ & 0x00000010) == 0x00000010)) {
-        output.writeInt32(5, sex_);
+        output.writeInt32(5, age_);
       }
       if (((bitField0_ & 0x00000020) == 0x00000020)) {
-        output.writeInt32(6, telephone_);
+        output.writeInt32(6, sex_);
+      }
+      if (((bitField0_ & 0x00000040) == 0x00000040)) {
+        output.writeBytes(7, getTelephoneBytes());
+      }
+      if (((bitField0_ & 0x00000080) == 0x00000080)) {
+        output.writeBytes(8, getIdcardBytes());
       }
       getUnknownFields().writeTo(output);
     }
@@ -501,11 +633,19 @@ public final class RegisterProtoBuf {
       }
       if (((bitField0_ & 0x00000010) == 0x00000010)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(5, sex_);
+          .computeInt32Size(5, age_);
       }
       if (((bitField0_ & 0x00000020) == 0x00000020)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(6, telephone_);
+          .computeInt32Size(6, sex_);
+      }
+      if (((bitField0_ & 0x00000040) == 0x00000040)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(7, getTelephoneBytes());
+      }
+      if (((bitField0_ & 0x00000080) == 0x00000080)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(8, getIdcardBytes());
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -637,10 +777,14 @@ public final class RegisterProtoBuf {
         bitField0_ = (bitField0_ & ~0x00000004);
         name_ = "";
         bitField0_ = (bitField0_ & ~0x00000008);
-        sex_ = 0;
+        age_ = 0;
         bitField0_ = (bitField0_ & ~0x00000010);
-        telephone_ = 0;
+        sex_ = 0;
         bitField0_ = (bitField0_ & ~0x00000020);
+        telephone_ = "";
+        bitField0_ = (bitField0_ & ~0x00000040);
+        idcard_ = "";
+        bitField0_ = (bitField0_ & ~0x00000080);
         return this;
       }
 
@@ -692,11 +836,19 @@ public final class RegisterProtoBuf {
         if (((from_bitField0_ & 0x00000010) == 0x00000010)) {
           to_bitField0_ |= 0x00000010;
         }
-        result.sex_ = sex_;
+        result.age_ = age_;
         if (((from_bitField0_ & 0x00000020) == 0x00000020)) {
           to_bitField0_ |= 0x00000020;
         }
+        result.sex_ = sex_;
+        if (((from_bitField0_ & 0x00000040) == 0x00000040)) {
+          to_bitField0_ |= 0x00000040;
+        }
         result.telephone_ = telephone_;
+        if (((from_bitField0_ & 0x00000080) == 0x00000080)) {
+          to_bitField0_ |= 0x00000080;
+        }
+        result.idcard_ = idcard_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -731,11 +883,21 @@ public final class RegisterProtoBuf {
           name_ = other.name_;
           onChanged();
         }
+        if (other.hasAge()) {
+          setAge(other.getAge());
+        }
         if (other.hasSex()) {
           setSex(other.getSex());
         }
         if (other.hasTelephone()) {
-          setTelephone(other.getTelephone());
+          bitField0_ |= 0x00000040;
+          telephone_ = other.telephone_;
+          onChanged();
+        }
+        if (other.hasIdcard()) {
+          bitField0_ |= 0x00000080;
+          idcard_ = other.idcard_;
+          onChanged();
         }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
@@ -1160,66 +1322,218 @@ public final class RegisterProtoBuf {
         return this;
       }
 
-      private int sex_ ;
+      private int age_ ;
       /**
-       * <code>optional int32 sex = 5;</code>
+       * <code>optional int32 age = 5;</code>
        */
-      public boolean hasSex() {
+      public boolean hasAge() {
         return ((bitField0_ & 0x00000010) == 0x00000010);
       }
       /**
-       * <code>optional int32 sex = 5;</code>
+       * <code>optional int32 age = 5;</code>
+       */
+      public int getAge() {
+        return age_;
+      }
+      /**
+       * <code>optional int32 age = 5;</code>
+       */
+      public Builder setAge(int value) {
+        bitField0_ |= 0x00000010;
+        age_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional int32 age = 5;</code>
+       */
+      public Builder clearAge() {
+        bitField0_ = (bitField0_ & ~0x00000010);
+        age_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private int sex_ ;
+      /**
+       * <code>optional int32 sex = 6;</code>
+       */
+      public boolean hasSex() {
+        return ((bitField0_ & 0x00000020) == 0x00000020);
+      }
+      /**
+       * <code>optional int32 sex = 6;</code>
        */
       public int getSex() {
         return sex_;
       }
       /**
-       * <code>optional int32 sex = 5;</code>
+       * <code>optional int32 sex = 6;</code>
        */
       public Builder setSex(int value) {
-        bitField0_ |= 0x00000010;
+        bitField0_ |= 0x00000020;
         sex_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>optional int32 sex = 5;</code>
+       * <code>optional int32 sex = 6;</code>
        */
       public Builder clearSex() {
-        bitField0_ = (bitField0_ & ~0x00000010);
+        bitField0_ = (bitField0_ & ~0x00000020);
         sex_ = 0;
         onChanged();
         return this;
       }
 
-      private int telephone_ ;
+      private java.lang.Object telephone_ = "";
       /**
-       * <code>optional int32 telephone = 6;</code>
+       * <code>optional string telephone = 7;</code>
        */
       public boolean hasTelephone() {
-        return ((bitField0_ & 0x00000020) == 0x00000020);
+        return ((bitField0_ & 0x00000040) == 0x00000040);
       }
       /**
-       * <code>optional int32 telephone = 6;</code>
+       * <code>optional string telephone = 7;</code>
        */
-      public int getTelephone() {
-        return telephone_;
+      public java.lang.String getTelephone() {
+        java.lang.Object ref = telephone_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          if (bs.isValidUtf8()) {
+            telephone_ = s;
+          }
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
       }
       /**
-       * <code>optional int32 telephone = 6;</code>
+       * <code>optional string telephone = 7;</code>
        */
-      public Builder setTelephone(int value) {
-        bitField0_ |= 0x00000020;
+      public com.google.protobuf.ByteString
+          getTelephoneBytes() {
+        java.lang.Object ref = telephone_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          telephone_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>optional string telephone = 7;</code>
+       */
+      public Builder setTelephone(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000040;
         telephone_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>optional int32 telephone = 6;</code>
+       * <code>optional string telephone = 7;</code>
        */
       public Builder clearTelephone() {
-        bitField0_ = (bitField0_ & ~0x00000020);
-        telephone_ = 0;
+        bitField0_ = (bitField0_ & ~0x00000040);
+        telephone_ = getDefaultInstance().getTelephone();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string telephone = 7;</code>
+       */
+      public Builder setTelephoneBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000040;
+        telephone_ = value;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object idcard_ = "";
+      /**
+       * <code>optional string idcard = 8;</code>
+       */
+      public boolean hasIdcard() {
+        return ((bitField0_ & 0x00000080) == 0x00000080);
+      }
+      /**
+       * <code>optional string idcard = 8;</code>
+       */
+      public java.lang.String getIdcard() {
+        java.lang.Object ref = idcard_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          if (bs.isValidUtf8()) {
+            idcard_ = s;
+          }
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>optional string idcard = 8;</code>
+       */
+      public com.google.protobuf.ByteString
+          getIdcardBytes() {
+        java.lang.Object ref = idcard_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          idcard_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>optional string idcard = 8;</code>
+       */
+      public Builder setIdcard(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000080;
+        idcard_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string idcard = 8;</code>
+       */
+      public Builder clearIdcard() {
+        bitField0_ = (bitField0_ & ~0x00000080);
+        idcard_ = getDefaultInstance().getIdcard();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string idcard = 8;</code>
+       */
+      public Builder setIdcardBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000080;
+        idcard_ = value;
         onChanged();
         return this;
       }
@@ -1249,12 +1563,12 @@ public final class RegisterProtoBuf {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\016Register.proto\032\021MessageBase.proto\"}\n\013R" +
-      "egisterMsg\022\035\n\007msgbase\030\001 \002(\0132\014.MessageBas" +
-      "e\022\017\n\007account\030\002 \002(\t\022\020\n\010password\030\003 \002(\t\022\014\n\004" +
-      "name\030\004 \001(\t\022\013\n\003sex\030\005 \001(\005\022\021\n\ttelephone\030\006 \001" +
-      "(\005B)\n\025com.meteor.minaserverB\020RegisterPro" +
-      "toBuf"
+      "\n\016Register.proto\032\021MessageBase.proto\"\232\001\n\013" +
+      "RegisterMsg\022\035\n\007msgbase\030\001 \002(\0132\014.MessageBa" +
+      "se\022\017\n\007account\030\002 \002(\t\022\020\n\010password\030\003 \002(\t\022\014\n" +
+      "\004name\030\004 \001(\t\022\013\n\003age\030\005 \001(\005\022\013\n\003sex\030\006 \001(\005\022\021\n" +
+      "\ttelephone\030\007 \001(\t\022\016\n\006idcard\030\010 \001(\tB)\n\025com." +
+      "meteor.minaserverB\020RegisterProtoBuf"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -1274,7 +1588,7 @@ public final class RegisterProtoBuf {
     internal_static_RegisterMsg_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_RegisterMsg_descriptor,
-        new java.lang.String[] { "Msgbase", "Account", "Password", "Name", "Sex", "Telephone", });
+        new java.lang.String[] { "Msgbase", "Account", "Password", "Name", "Age", "Sex", "Telephone", "Idcard", });
     com.meteor.minaserver.MessageBaseProtoBuf.getDescriptor();
   }
 

@@ -32,13 +32,15 @@ void protobuf_AssignDesc_Register_2eproto() {
       "Register.proto");
   GOOGLE_CHECK(file != NULL);
   RegisterMsg_descriptor_ = file->message_type(0);
-  static const int RegisterMsg_offsets_[6] = {
+  static const int RegisterMsg_offsets_[8] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RegisterMsg, msgbase_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RegisterMsg, account_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RegisterMsg, password_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RegisterMsg, name_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RegisterMsg, age_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RegisterMsg, sex_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RegisterMsg, telephone_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RegisterMsg, idcard_),
   };
   RegisterMsg_reflection_ =
     new ::google::protobuf::internal::GeneratedMessageReflection(
@@ -82,12 +84,12 @@ void protobuf_AddDesc_Register_2eproto() {
 
   ::protobuf_AddDesc_MessageBase_2eproto();
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
-    "\n\016Register.proto\032\021MessageBase.proto\"}\n\013R"
-    "egisterMsg\022\035\n\007msgbase\030\001 \002(\0132\014.MessageBas"
-    "e\022\017\n\007account\030\002 \002(\t\022\020\n\010password\030\003 \002(\t\022\014\n\004"
-    "name\030\004 \001(\t\022\013\n\003sex\030\005 \001(\005\022\021\n\ttelephone\030\006 \001"
-    "(\005B)\n\025com.meteor.minaserverB\020RegisterPro"
-    "toBuf", 205);
+    "\n\016Register.proto\032\021MessageBase.proto\"\232\001\n\013"
+    "RegisterMsg\022\035\n\007msgbase\030\001 \002(\0132\014.MessageBa"
+    "se\022\017\n\007account\030\002 \002(\t\022\020\n\010password\030\003 \002(\t\022\014\n"
+    "\004name\030\004 \001(\t\022\013\n\003age\030\005 \001(\005\022\013\n\003sex\030\006 \001(\005\022\021\n"
+    "\ttelephone\030\007 \001(\t\022\016\n\006idcard\030\010 \001(\tB)\n\025com."
+    "meteor.minaserverB\020RegisterProtoBuf", 235);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "Register.proto", &protobuf_RegisterTypes);
   RegisterMsg::default_instance_ = new RegisterMsg();
@@ -109,8 +111,10 @@ const int RegisterMsg::kMsgbaseFieldNumber;
 const int RegisterMsg::kAccountFieldNumber;
 const int RegisterMsg::kPasswordFieldNumber;
 const int RegisterMsg::kNameFieldNumber;
+const int RegisterMsg::kAgeFieldNumber;
 const int RegisterMsg::kSexFieldNumber;
 const int RegisterMsg::kTelephoneFieldNumber;
+const int RegisterMsg::kIdcardFieldNumber;
 #endif  // !_MSC_VER
 
 RegisterMsg::RegisterMsg()
@@ -137,8 +141,10 @@ void RegisterMsg::SharedCtor() {
   account_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   password_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   name_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  age_ = 0;
   sex_ = 0;
-  telephone_ = 0;
+  telephone_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  idcard_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
 }
 
@@ -156,6 +162,12 @@ void RegisterMsg::SharedDtor() {
   }
   if (name_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
     delete name_;
+  }
+  if (telephone_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    delete telephone_;
+  }
+  if (idcard_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    delete idcard_;
   }
   if (this != default_instance_) {
     delete msgbase_;
@@ -194,8 +206,8 @@ void RegisterMsg::Clear() {
     ::memset(&first, 0, n);                                \
   } while (0)
 
-  if (_has_bits_[0 / 32] & 63) {
-    ZR_(sex_, telephone_);
+  if (_has_bits_[0 / 32] & 255) {
+    ZR_(age_, sex_);
     if (has_msgbase()) {
       if (msgbase_ != NULL) msgbase_->::MessageBase::Clear();
     }
@@ -212,6 +224,16 @@ void RegisterMsg::Clear() {
     if (has_name()) {
       if (name_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
         name_->clear();
+      }
+    }
+    if (has_telephone()) {
+      if (telephone_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+        telephone_->clear();
+      }
+    }
+    if (has_idcard()) {
+      if (idcard_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+        idcard_->clear();
       }
     }
   }
@@ -292,13 +314,28 @@ bool RegisterMsg::MergePartialFromCodedStream(
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(40)) goto parse_sex;
+        if (input->ExpectTag(40)) goto parse_age;
         break;
       }
 
-      // optional int32 sex = 5;
+      // optional int32 age = 5;
       case 5: {
         if (tag == 40) {
+         parse_age:
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
+                 input, &age_)));
+          set_has_age();
+        } else {
+          goto handle_unusual;
+        }
+        if (input->ExpectTag(48)) goto parse_sex;
+        break;
+      }
+
+      // optional int32 sex = 6;
+      case 6: {
+        if (tag == 48) {
          parse_sex:
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
@@ -307,18 +344,37 @@ bool RegisterMsg::MergePartialFromCodedStream(
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(48)) goto parse_telephone;
+        if (input->ExpectTag(58)) goto parse_telephone;
         break;
       }
 
-      // optional int32 telephone = 6;
-      case 6: {
-        if (tag == 48) {
+      // optional string telephone = 7;
+      case 7: {
+        if (tag == 58) {
          parse_telephone:
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
-                 input, &telephone_)));
-          set_has_telephone();
+          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
+                input, this->mutable_telephone()));
+          ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
+            this->telephone().data(), this->telephone().length(),
+            ::google::protobuf::internal::WireFormat::PARSE,
+            "telephone");
+        } else {
+          goto handle_unusual;
+        }
+        if (input->ExpectTag(66)) goto parse_idcard;
+        break;
+      }
+
+      // optional string idcard = 8;
+      case 8: {
+        if (tag == 66) {
+         parse_idcard:
+          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
+                input, this->mutable_idcard()));
+          ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
+            this->idcard().data(), this->idcard().length(),
+            ::google::protobuf::internal::WireFormat::PARSE,
+            "idcard");
         } else {
           goto handle_unusual;
         }
@@ -387,14 +443,34 @@ void RegisterMsg::SerializeWithCachedSizes(
       4, this->name(), output);
   }
 
-  // optional int32 sex = 5;
-  if (has_sex()) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt32(5, this->sex(), output);
+  // optional int32 age = 5;
+  if (has_age()) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(5, this->age(), output);
   }
 
-  // optional int32 telephone = 6;
+  // optional int32 sex = 6;
+  if (has_sex()) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(6, this->sex(), output);
+  }
+
+  // optional string telephone = 7;
   if (has_telephone()) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt32(6, this->telephone(), output);
+    ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
+      this->telephone().data(), this->telephone().length(),
+      ::google::protobuf::internal::WireFormat::SERIALIZE,
+      "telephone");
+    ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
+      7, this->telephone(), output);
+  }
+
+  // optional string idcard = 8;
+  if (has_idcard()) {
+    ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
+      this->idcard().data(), this->idcard().length(),
+      ::google::protobuf::internal::WireFormat::SERIALIZE,
+      "idcard");
+    ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
+      8, this->idcard(), output);
   }
 
   if (!unknown_fields().empty()) {
@@ -447,14 +523,36 @@ void RegisterMsg::SerializeWithCachedSizes(
         4, this->name(), target);
   }
 
-  // optional int32 sex = 5;
-  if (has_sex()) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(5, this->sex(), target);
+  // optional int32 age = 5;
+  if (has_age()) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(5, this->age(), target);
   }
 
-  // optional int32 telephone = 6;
+  // optional int32 sex = 6;
+  if (has_sex()) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(6, this->sex(), target);
+  }
+
+  // optional string telephone = 7;
   if (has_telephone()) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(6, this->telephone(), target);
+    ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
+      this->telephone().data(), this->telephone().length(),
+      ::google::protobuf::internal::WireFormat::SERIALIZE,
+      "telephone");
+    target =
+      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
+        7, this->telephone(), target);
+  }
+
+  // optional string idcard = 8;
+  if (has_idcard()) {
+    ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
+      this->idcard().data(), this->idcard().length(),
+      ::google::protobuf::internal::WireFormat::SERIALIZE,
+      "idcard");
+    target =
+      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
+        8, this->idcard(), target);
   }
 
   if (!unknown_fields().empty()) {
@@ -497,18 +595,32 @@ int RegisterMsg::ByteSize() const {
           this->name());
     }
 
-    // optional int32 sex = 5;
+    // optional int32 age = 5;
+    if (has_age()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::Int32Size(
+          this->age());
+    }
+
+    // optional int32 sex = 6;
     if (has_sex()) {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::Int32Size(
           this->sex());
     }
 
-    // optional int32 telephone = 6;
+    // optional string telephone = 7;
     if (has_telephone()) {
       total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::Int32Size(
+        ::google::protobuf::internal::WireFormatLite::StringSize(
           this->telephone());
+    }
+
+    // optional string idcard = 8;
+    if (has_idcard()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::StringSize(
+          this->idcard());
     }
 
   }
@@ -550,11 +662,17 @@ void RegisterMsg::MergeFrom(const RegisterMsg& from) {
     if (from.has_name()) {
       set_name(from.name());
     }
+    if (from.has_age()) {
+      set_age(from.age());
+    }
     if (from.has_sex()) {
       set_sex(from.sex());
     }
     if (from.has_telephone()) {
       set_telephone(from.telephone());
+    }
+    if (from.has_idcard()) {
+      set_idcard(from.idcard());
     }
   }
   mutable_unknown_fields()->MergeFrom(from.unknown_fields());
@@ -587,8 +705,10 @@ void RegisterMsg::Swap(RegisterMsg* other) {
     std::swap(account_, other->account_);
     std::swap(password_, other->password_);
     std::swap(name_, other->name_);
+    std::swap(age_, other->age_);
     std::swap(sex_, other->sex_);
     std::swap(telephone_, other->telephone_);
+    std::swap(idcard_, other->idcard_);
     std::swap(_has_bits_[0], other->_has_bits_[0]);
     _unknown_fields_.Swap(&other->_unknown_fields_);
     std::swap(_cached_size_, other->_cached_size_);

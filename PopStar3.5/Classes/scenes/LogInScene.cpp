@@ -3,7 +3,6 @@
 #include "connection/GameConnection.h"
 #include "connection/WebSocketConnection.h"
 #include "connection/Register.pb.h"
-#include "connection/RequestData.h"
 
 USING_NS_CC;
 
@@ -16,6 +15,7 @@ Scene* LogInScene::createScene()
 
 	// 'layer' is an autorelease object
 	auto layer = LogInScene::create();
+	layer->setName("login");
 
 	// add layer as a child to scene
 	scene->addChild(layer);
@@ -46,7 +46,8 @@ bool LogInScene::init()
 	_account->setTextVerticalAlignment(TextVAlignment::CENTER);
 	_password = dynamic_cast<ui::TextField*>(rootNode->getChildByName("password"));
 	_password->setTextVerticalAlignment(TextVAlignment::CENTER);
-	//_errorInfo = dynamic_cast<ui::Text*>(rootNode->getChildByName("error"));
+	_errorInfo = dynamic_cast<ui::Text*>(rootNode->getChildByName("error"));
+	//updateErrorInfo("register success");
 	//_errorInfo->setVisible(false);
 	/*auto listener = EventListenerTouchOneByOne::create();
 	listener->onTouchBegan = [](Touch* t, Event *e){
@@ -73,16 +74,12 @@ bool LogInScene::init()
 
 void LogInScene::SignInBtnClick(cocos2d::Ref* pSender)
 {
-	CCLOG("clicked");
 	//GameConnection::getInstance()->connect();
 	//GameConnection::getInstance()->sendData("hello");
 	//WebSocketConnection::getInstance()->connect();
 	//WebSocketConnection::getInstance()->sendData("hello");
-	RequestData reqData;
-	reqData.setMessageHead(MessageBase_Opcode::MessageBase_Opcode_REGISTER);
-	reqData.setRequestMessage("中英文混合测试消息！at last you did it!!!");
-	reqData.sendMessage();
-	return;
+	//GameConnection::getInstance()->sendData(MessageBase_Opcode_REGISTER, "中英文混合测试消息！at last you did it!!!");
+	//return;
 
 	//检查参数
 	/*std::string strAccount = _account->getString();
@@ -97,23 +94,22 @@ void LogInScene::SignInBtnClick(cocos2d::Ref* pSender)
 	{
 		CCLOG("password invalid : %s", strPassword.c_str());
 		return;
-	}
+	}*/
 	auto reg = new RegisterMsg();
 	reg->mutable_msgbase()->set_majorversion(0);
 	reg->mutable_msgbase()->set_minurversion(0);
 	reg->mutable_msgbase()->set_buildversion(1);
 	reg->mutable_msgbase()->set_code(MessageBase_Opcode::MessageBase_Opcode_REGISTER);
 
-	reg->set_account(strAccount.c_str());
-	reg->set_password(strPassword.c_str());
-	reg->set_telephone(1234);
+	reg->set_account("test123@163.com");
+	reg->set_password("123456");
+	reg->set_telephone("13355556666");
 	reg->set_name("张三");
 	reg->set_sex(0);
+	reg->set_age(12);
+	reg->set_idcard("500111444777888555");
 
-	RequestData reqData;
-	reqData.setMessageHead(MessageBase_Opcode::MessageBase_Opcode_REGISTER);
-	reqData.setRequestMessage(reg->SerializeAsString());
-	reqData.sendMessage();*/
+	GameConnection::getInstance()->sendData(reg->mutable_msgbase()->code(), reg->SerializeAsString());
 
 }
 
@@ -147,6 +143,20 @@ void LogInScene::onEnter()
 {
 	Layer::onEnter();
 	GameConnection::getInstance()->connect();
+}
+
+void LogInScene::updateErrorInfo(const std::string& info)
+{
+	_errorInfo->setString(info);
+	auto seq = Sequence::create(
+		FadeIn::create(0.5f),
+		DelayTime::create(0.5f),
+		Blink::create(2.0f, 4),
+		DelayTime::create(2.0f),
+		FadeOut::create(0.5f),
+		nullptr
+	);
+	_errorInfo->runAction(seq);
 }
 
 

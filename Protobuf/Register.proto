@@ -1,4 +1,5 @@
 //编译方式protoc -I=. --cpp_out=. Register.proto
+//JAVA编译方式 protoc --java_out=../src/com/meteor/minaserver Register.proto
 
 import "MessageBase.proto";
 
@@ -11,6 +12,8 @@ message RegisterMsg
    	required string account = 2;
    	required string password = 3;
    	optional string name = 4;
-   	optional int32 sex = 5;
-   	optional int32 telephone = 6;
+   	optional int32 age = 5;
+   	optional int32 sex = 6;
+   	optional string telephone = 7;
+   	optional string idcard = 8;
 }  

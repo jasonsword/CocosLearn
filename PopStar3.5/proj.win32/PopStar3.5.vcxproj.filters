@@ -69,9 +69,6 @@
     <ClCompile Include="..\Classes\connection\WebSocketConnection.cpp">
       <Filter>src\connection</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\connection\RequestData.cpp">
-      <Filter>src\connection</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -120,9 +117,6 @@
       <Filter>src\connection</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\connection\Register.pb.h">
-      <Filter>src\connection</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\connection\RequestData.h">
       <Filter>src\connection</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\connection\WebSocketConnection.h">

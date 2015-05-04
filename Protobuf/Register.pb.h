@@ -134,19 +134,43 @@ class RegisterMsg : public ::google::protobuf::Message {
   inline ::std::string* release_name();
   inline void set_allocated_name(::std::string* name);
 
-  // optional int32 sex = 5;
+  // optional int32 age = 5;
+  inline bool has_age() const;
+  inline void clear_age();
+  static const int kAgeFieldNumber = 5;
+  inline ::google::protobuf::int32 age() const;
+  inline void set_age(::google::protobuf::int32 value);
+
+  // optional int32 sex = 6;
   inline bool has_sex() const;
   inline void clear_sex();
-  static const int kSexFieldNumber = 5;
+  static const int kSexFieldNumber = 6;
   inline ::google::protobuf::int32 sex() const;
   inline void set_sex(::google::protobuf::int32 value);
 
-  // optional int32 telephone = 6;
+  // optional string telephone = 7;
   inline bool has_telephone() const;
   inline void clear_telephone();
-  static const int kTelephoneFieldNumber = 6;
-  inline ::google::protobuf::int32 telephone() const;
-  inline void set_telephone(::google::protobuf::int32 value);
+  static const int kTelephoneFieldNumber = 7;
+  inline const ::std::string& telephone() const;
+  inline void set_telephone(const ::std::string& value);
+  inline void set_telephone(const char* value);
+  inline void set_telephone(const char* value, size_t size);
+  inline ::std::string* mutable_telephone();
+  inline ::std::string* release_telephone();
+  inline void set_allocated_telephone(::std::string* telephone);
+
+  // optional string idcard = 8;
+  inline bool has_idcard() const;
+  inline void clear_idcard();
+  static const int kIdcardFieldNumber = 8;
+  inline const ::std::string& idcard() const;
+  inline void set_idcard(const ::std::string& value);
+  inline void set_idcard(const char* value);
+  inline void set_idcard(const char* value, size_t size);
+  inline ::std::string* mutable_idcard();
+  inline ::std::string* release_idcard();
+  inline void set_allocated_idcard(::std::string* idcard);
 
   // @@protoc_insertion_point(class_scope:RegisterMsg)
  private:
@@ -158,10 +182,14 @@ class RegisterMsg : public ::google::protobuf::Message {
   inline void clear_has_password();
   inline void set_has_name();
   inline void clear_has_name();
+  inline void set_has_age();
+  inline void clear_has_age();
   inline void set_has_sex();
   inline void clear_has_sex();
   inline void set_has_telephone();
   inline void clear_has_telephone();
+  inline void set_has_idcard();
+  inline void clear_has_idcard();
 
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
 
@@ -171,8 +199,10 @@ class RegisterMsg : public ::google::protobuf::Message {
   ::std::string* account_;
   ::std::string* password_;
   ::std::string* name_;
+  ::google::protobuf::int32 age_;
   ::google::protobuf::int32 sex_;
-  ::google::protobuf::int32 telephone_;
+  ::std::string* telephone_;
+  ::std::string* idcard_;
   friend void  protobuf_AddDesc_Register_2eproto();
   friend void protobuf_AssignDesc_Register_2eproto();
   friend void protobuf_ShutdownFile_Register_2eproto();
@@ -456,15 +486,39 @@ inline void RegisterMsg::set_allocated_name(::std::string* name) {
   // @@protoc_insertion_point(field_set_allocated:RegisterMsg.name)
 }
 
-// optional int32 sex = 5;
-inline bool RegisterMsg::has_sex() const {
+// optional int32 age = 5;
+inline bool RegisterMsg::has_age() const {
   return (_has_bits_[0] & 0x00000010u) != 0;
 }
-inline void RegisterMsg::set_has_sex() {
+inline void RegisterMsg::set_has_age() {
   _has_bits_[0] |= 0x00000010u;
 }
-inline void RegisterMsg::clear_has_sex() {
+inline void RegisterMsg::clear_has_age() {
   _has_bits_[0] &= ~0x00000010u;
+}
+inline void RegisterMsg::clear_age() {
+  age_ = 0;
+  clear_has_age();
+}
+inline ::google::protobuf::int32 RegisterMsg::age() const {
+  // @@protoc_insertion_point(field_get:RegisterMsg.age)
+  return age_;
+}
+inline void RegisterMsg::set_age(::google::protobuf::int32 value) {
+  set_has_age();
+  age_ = value;
+  // @@protoc_insertion_point(field_set:RegisterMsg.age)
+}
+
+// optional int32 sex = 6;
+inline bool RegisterMsg::has_sex() const {
+  return (_has_bits_[0] & 0x00000020u) != 0;
+}
+inline void RegisterMsg::set_has_sex() {
+  _has_bits_[0] |= 0x00000020u;
+}
+inline void RegisterMsg::clear_has_sex() {
+  _has_bits_[0] &= ~0x00000020u;
 }
 inline void RegisterMsg::clear_sex() {
   sex_ = 0;
@@ -480,28 +534,156 @@ inline void RegisterMsg::set_sex(::google::protobuf::int32 value) {
   // @@protoc_insertion_point(field_set:RegisterMsg.sex)
 }
 
-// optional int32 telephone = 6;
+// optional string telephone = 7;
 inline bool RegisterMsg::has_telephone() const {
-  return (_has_bits_[0] & 0x00000020u) != 0;
+  return (_has_bits_[0] & 0x00000040u) != 0;
 }
 inline void RegisterMsg::set_has_telephone() {
-  _has_bits_[0] |= 0x00000020u;
+  _has_bits_[0] |= 0x00000040u;
 }
 inline void RegisterMsg::clear_has_telephone() {
-  _has_bits_[0] &= ~0x00000020u;
+  _has_bits_[0] &= ~0x00000040u;
 }
 inline void RegisterMsg::clear_telephone() {
-  telephone_ = 0;
+  if (telephone_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    telephone_->clear();
+  }
   clear_has_telephone();
 }
-inline ::google::protobuf::int32 RegisterMsg::telephone() const {
+inline const ::std::string& RegisterMsg::telephone() const {
   // @@protoc_insertion_point(field_get:RegisterMsg.telephone)
+  return *telephone_;
+}
+inline void RegisterMsg::set_telephone(const ::std::string& value) {
+  set_has_telephone();
+  if (telephone_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    telephone_ = new ::std::string;
+  }
+  telephone_->assign(value);
+  // @@protoc_insertion_point(field_set:RegisterMsg.telephone)
+}
+inline void RegisterMsg::set_telephone(const char* value) {
+  set_has_telephone();
+  if (telephone_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    telephone_ = new ::std::string;
+  }
+  telephone_->assign(value);
+  // @@protoc_insertion_point(field_set_char:RegisterMsg.telephone)
+}
+inline void RegisterMsg::set_telephone(const char* value, size_t size) {
+  set_has_telephone();
+  if (telephone_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    telephone_ = new ::std::string;
+  }
+  telephone_->assign(reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_set_pointer:RegisterMsg.telephone)
+}
+inline ::std::string* RegisterMsg::mutable_telephone() {
+  set_has_telephone();
+  if (telephone_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    telephone_ = new ::std::string;
+  }
+  // @@protoc_insertion_point(field_mutable:RegisterMsg.telephone)
   return telephone_;
 }
-inline void RegisterMsg::set_telephone(::google::protobuf::int32 value) {
-  set_has_telephone();
-  telephone_ = value;
-  // @@protoc_insertion_point(field_set:RegisterMsg.telephone)
+inline ::std::string* RegisterMsg::release_telephone() {
+  clear_has_telephone();
+  if (telephone_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    return NULL;
+  } else {
+    ::std::string* temp = telephone_;
+    telephone_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    return temp;
+  }
+}
+inline void RegisterMsg::set_allocated_telephone(::std::string* telephone) {
+  if (telephone_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    delete telephone_;
+  }
+  if (telephone) {
+    set_has_telephone();
+    telephone_ = telephone;
+  } else {
+    clear_has_telephone();
+    telephone_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  }
+  // @@protoc_insertion_point(field_set_allocated:RegisterMsg.telephone)
+}
+
+// optional string idcard = 8;
+inline bool RegisterMsg::has_idcard() const {
+  return (_has_bits_[0] & 0x00000080u) != 0;
+}
+inline void RegisterMsg::set_has_idcard() {
+  _has_bits_[0] |= 0x00000080u;
+}
+inline void RegisterMsg::clear_has_idcard() {
+  _has_bits_[0] &= ~0x00000080u;
+}
+inline void RegisterMsg::clear_idcard() {
+  if (idcard_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    idcard_->clear();
+  }
+  clear_has_idcard();
+}
+inline const ::std::string& RegisterMsg::idcard() const {
+  // @@protoc_insertion_point(field_get:RegisterMsg.idcard)
+  return *idcard_;
+}
+inline void RegisterMsg::set_idcard(const ::std::string& value) {
+  set_has_idcard();
+  if (idcard_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    idcard_ = new ::std::string;
+  }
+  idcard_->assign(value);
+  // @@protoc_insertion_point(field_set:RegisterMsg.idcard)
+}
+inline void RegisterMsg::set_idcard(const char* value) {
+  set_has_idcard();
+  if (idcard_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    idcard_ = new ::std::string;
+  }
+  idcard_->assign(value);
+  // @@protoc_insertion_point(field_set_char:RegisterMsg.idcard)
+}
+inline void RegisterMsg::set_idcard(const char* value, size_t size) {
+  set_has_idcard();
+  if (idcard_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    idcard_ = new ::std::string;
+  }
+  idcard_->assign(reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_set_pointer:RegisterMsg.idcard)
+}
+inline ::std::string* RegisterMsg::mutable_idcard() {
+  set_has_idcard();
+  if (idcard_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    idcard_ = new ::std::string;
+  }
+  // @@protoc_insertion_point(field_mutable:RegisterMsg.idcard)
+  return idcard_;
+}
+inline ::std::string* RegisterMsg::release_idcard() {
+  clear_has_idcard();
+  if (idcard_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    return NULL;
+  } else {
+    ::std::string* temp = idcard_;
+    idcard_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    return temp;
+  }
+}
+inline void RegisterMsg::set_allocated_idcard(::std::string* idcard) {
+  if (idcard_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    delete idcard_;
+  }
+  if (idcard) {
+    set_has_idcard();
+    idcard_ = idcard;
+  } else {
+    clear_has_idcard();
+    idcard_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  }
+  // @@protoc_insertion_point(field_set_allocated:RegisterMsg.idcard)
 }
 
 

@@ -18,6 +18,8 @@ public:
 
 	void SignInBtnClick(cocos2d::Ref* pSender);
 
+	void updateErrorInfo(const std::string& info);
+
 	CREATE_FUNC(LogInScene);
 
 private:
