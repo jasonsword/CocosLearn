@@ -48,30 +48,8 @@ void GameConnection::connect()
 		return;
 	}
 
-	_odsocket = new ODSocket();
-	_odsocket->Init();
-
-	bool isok = _odsocket->Create(AF_INET, SOCK_STREAM, 0);
-	if (!isok)
-	{
-		CCLOG("socket create failed!");
-		CC_SAFE_DELETE(_odsocket);
-		return;
-	}
-
-	_online = _odsocket->Connect(serverAddr.c_str(), serverPort);
-	if (_online)
-	{
-		CCLOG("conect succeed, recvProc started");
-		_threadhandle = new std::thread(&GameConnection::ResponseProc, this);
-		//_threadhandle->detach();
-		scheduleUpdate();
-	}
-	else
-	{
-		CCLOG("conect failed");
-		CC_SAFE_DELETE(_odsocket);
-	}
+	_threadhandle = new std::thread(&GameConnection::ResponseProc, this);
+	scheduleUpdate();
 }
 
 void GameConnection::sendData(const MessageBase_Opcode& code, const std::string& data)
@@ -102,6 +80,28 @@ void GameConnection::sendData(const MessageBase_Opcode& code, const std::string&
 
 void GameConnection::ResponseProc()
 {
+	_odsocket = new ODSocket();
+	_odsocket->Init();
+
+	bool isok = _odsocket->Create(AF_INET, SOCK_STREAM, 0);
+	if (!isok)
+	{
+		CCLOG("socket create failed!");
+		CC_SAFE_DELETE(_odsocket);
+		return;
+	}
+	_online = _odsocket->Connect(serverAddr.c_str(), serverPort);
+	if (_online)
+	{
+		CCLOG("conect succeed, recvProc started");
+	}
+	else
+	{
+		CCLOG("conect failed");
+		CC_SAFE_DELETE(_odsocket);
+		return;
+	}
+
 	while (true)
 	{
 		std::this_thread::sleep_for(std::chrono::milliseconds(50));
@@ -193,7 +193,6 @@ void GameConnection::disconnect()
 		_online = false;
 		_odsocket->Close();
 		CC_SAFE_DELETE(_odsocket);
-		CC_SAFE_DELETE(_threadhandle);
 	}
 }
 
@@ -216,8 +215,6 @@ void GameConnection::scheduleUpdate()
 
 void GameConnection::update(float delta)
 {
-	socketMessage *msg = nullptr;
-
 	/* Avoid locking if, in most cases, the queue is empty. This could be a little faster.
 	size() is not thread-safe, it might return a strange value, but it should be OK in our scenario.
 	*/
@@ -234,7 +231,7 @@ void GameConnection::update(float delta)
 	}
 
 	// Gets message
-	msg = *(_socketMessageQueue->begin());
+	auto msg = *(_socketMessageQueue->begin());
 	_socketMessageQueue->pop_front();
 
 	_socketMessageQueueMutex.unlock();

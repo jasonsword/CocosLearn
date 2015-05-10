@@ -3,6 +3,7 @@
 #include "connection/GameConnection.h"
 #include "connection/WebSocketConnection.h"
 #include "connection/Register.pb.h"
+#include "MenuScene.h"
 
 USING_NS_CC;
 
@@ -69,6 +70,23 @@ bool LogInScene::init()
 	};
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);*/
 
+	auto backtomenu = Label::createWithTTF("fonts/Avenir-Roman.ttf", "BACK");
+	backtomenu->setSystemFontSize(60);
+	backtomenu->setTextColor(Color4B(255, 100, 0, 250));
+	backtomenu->setPosition(visibleSize.width / 2, 200);
+	this->addChild(backtomenu);
+
+	auto lisenter = EventListenerTouchOneByOne::create();
+	lisenter->onTouchBegan = [](Touch* t, Event* e)
+	{
+		if (e->getCurrentTarget()->getBoundingBox().containsPoint(t->getLocation()))
+		{
+			Director::getInstance()->replaceScene(TransitionFlipX::create(1.0f, MenuScene::createScene(), TransitionScene::Orientation::LEFT_OVER));
+		}
+		return false;
+	};
+	_eventDispatcher->addEventListenerWithSceneGraphPriority(lisenter, backtomenu);
+
     return true;
 }
 
@@ -82,7 +100,7 @@ void LogInScene::SignInBtnClick(cocos2d::Ref* pSender)
 	//return;
 
 	//检查参数
-	/*std::string strAccount = _account->getString();
+	std::string strAccount = _account->getString();
 	std::string strPassword = _password->getString();
 	
 	if (!is_email_valid(strAccount))
@@ -94,15 +112,15 @@ void LogInScene::SignInBtnClick(cocos2d::Ref* pSender)
 	{
 		CCLOG("password invalid : %s", strPassword.c_str());
 		return;
-	}*/
+	}
 	auto reg = new RegisterMsg();
 	reg->mutable_msgbase()->set_majorversion(0);
 	reg->mutable_msgbase()->set_minurversion(0);
 	reg->mutable_msgbase()->set_buildversion(1);
 	reg->mutable_msgbase()->set_code(MessageBase_Opcode::MessageBase_Opcode_REGISTER);
 
-	reg->set_account("test123@163.com");
-	reg->set_password("123456");
+	reg->set_account(strAccount);
+	reg->set_password(strPassword);
 	reg->set_telephone("13355556666");
 	reg->set_name("张三");
 	reg->set_sex(0);

@@ -1,5 +1,4 @@
 ﻿#include "AppDelegate.h"
-#include "scenes/LogInScene.h"
 #include "scenes/GameResource.h"
 #include "scenes/MenuScene.h"
 
@@ -47,7 +46,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
 	// 场景创建之前完成常用资源的加载
 	GameResource::Load();
     // create a scene. it's an autorelease object
-    auto scene = LogInScene::createScene();
+    auto scene = MenuScene::createScene();
 
     // run
     director->runWithScene(scene);

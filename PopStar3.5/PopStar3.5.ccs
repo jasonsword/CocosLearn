@@ -1,5 +1,5 @@
 <Solution>
-  <PropertyGroup Name="PopStar3.5" Version="2.2.1.0" Type="CocosStudio" />
+  <PropertyGroup Name="PopStar3.5" Version="2.2.5.0" Type="CocosStudio" />
   <SolutionFolder>
     <Group ctype="ResourceGroup">
       <RootFolder Name=".">
@@ -13,7 +13,7 @@
           <File Name="Avenir-Roman.ttf" />
         </Folder>
         <Folder Name="images">
-          <PlistImageFolder PListFile="star_packer.plist" Name=".star_packer_PList.Dir">
+          <PlistImageFolder Image="star_packer.png" PListFile="star_packer.plist" Name=".star_packer_PList.Dir">
             <PlistImageFile Name="icon.png" Key="icon.png" />
             <PlistImageFile Name="newgame.png" Key="newgame.png" />
             <PlistImageFile Name="pause.png" Key="pause.png" />

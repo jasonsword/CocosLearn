@@ -1,6 +1,7 @@
 ﻿#include "MenuScene.h"
 #include "GameScene.h"
 #include "GameData.h"
+#include "LogInScene.h"
 
 USING_NS_CC;
 
@@ -47,6 +48,23 @@ bool MenuScene::init()
 	menu->alignItemsVerticallyWithPadding(30.0f);
 	menu->setPosition(visibleSize.width / 2, visibleSize.height / 3);
 	this->addChild(menu);
+
+	auto login = Label::createWithTTF("fonts/Avenir-Roman.ttf", "LOGIN");
+	login->setSystemFontSize(60);
+	login->setTextColor(Color4B(255, 100, 0, 250));
+	login->setPosition(visibleSize.width / 2, 150);
+	this->addChild(login);
+
+	auto lisenter = EventListenerTouchOneByOne::create();
+	lisenter->onTouchBegan = [](Touch* t, Event* e)
+	{
+		if (e->getCurrentTarget()->getBoundingBox().containsPoint(t->getLocation()))
+		{
+			Director::getInstance()->replaceScene(TransitionFlipX::create(1.0f, LogInScene::createScene(), TransitionScene::Orientation::LEFT_OVER));
+		}
+		return false;
+	};
+	_eventDispatcher->addEventListenerWithSceneGraphPriority(lisenter, login);
     
     return true;
 }
