@@ -87,7 +87,7 @@ void WebSocketConnection::onClose(cocos2d::network::WebSocket* ws)
 
 void WebSocketConnection::onError(cocos2d::network::WebSocket* ws, const cocos2d::network::WebSocket::ErrorCode& error)
 {
-	log("Error was fired, error code: %d", error);
+	log("Error was fired, error code: %d", (int)error);
 }
 
 void WebSocketConnection::disconnect()

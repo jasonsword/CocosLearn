@@ -24,8 +24,8 @@ public:
 	bool getStar(int x, int y){ return _starinfo[x][y].exists; };
 	void setStarInfo(int x, int y, bool exists, Star::StarColor color = Star::StarColor::RED);
 
-	void XmlData::parseStarInfo();
-	void XmlData::saveStarInfo();
+	void parseStarInfo();
+	void saveStarInfo();
 
 	static XmlData* getInstance();
 	virtual ~XmlData();

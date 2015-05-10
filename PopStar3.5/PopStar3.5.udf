@@ -5,34 +5,26 @@
         <LuaIsEncrypt Value="False" />
         <LuaEncryptKey Value="" />
         <LuaEncryptSign Value="" />
-        <Android_PackageName Value="org.cocos.PopStar35" />
+        <Android_PackageName Value="com.meteor.PopStar" />
         <AndroidkeyStore Value="" />
-        <AndroidVersion Value="" />
+        <AndroidVersion Value="android-21" />
         <iOS_Target Value="PopStar3.5 iOS" />
         <iOS_BundleID Value="" />
         <Platform Value="Android" />
         <FrameworkVersion Value="cocos2d-x-3.5" />
         <IsDebugKeystore Value="True" />
+        <KeystorePassword Value="" />
+        <KeystoreAliasName Value="" />
+        <KeystoreAliasPassword Value="" />
         <EnableSourceMap Value="False" />
         <EnableHTML5Advanced Value="False" />
-      </Value>
-    </Item>
-    <Item Key="TabsParamsKey">
-      <Value ctype="TabsInfo">
-        <OpenedDocuments>
-          <FilePathData Path="LogIn.csd" />
-          <FilePathData Path="TopMenu.csd" />
-          <FilePathData Path="GameScene.csd" />
-          <FilePathData Path="MenuScene.csd" />
-        </OpenedDocuments>
-        <ActiveDocument Path="LogIn.csd" />
       </Value>
     </Item>
     <Item Key="CocosRecentOperation">
       <Value ctype="CocosRecentOperation">
         <LastPublishType Value="Resource" />
-        <IsLastPublish Value="True" />
-        <LastRunType Value="Unknown" />
+        <IsLastPublish Value="False" />
+        <LastRunType Value="Android" />
       </Value>
     </Item>
   </Properties>

@@ -1,0 +1,11 @@
+﻿#过滤数据库文件、sln解决方案文件、配置文件
+*.opensdf
+*.sdf
+*.suo
+*.aps
+*.config
+*.user
+
+
+#过滤文件夹Debug,Release,obj
+bin/
