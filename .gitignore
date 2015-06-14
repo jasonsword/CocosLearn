@@ -17,3 +17,8 @@ cocos2d/
 .metadata/
 protobuf-2.6.1/
 obj/
+package/
+assets/
+bin/
+libs/
+
