@@ -1,0 +1,41 @@
+<UserData>
+  <Properties>
+    <Item Key="PackageParamsKey">
+      <Value ctype="PackageParams">
+        <LuaIsEncrypt Value="False" />
+        <LuaEncryptKey Value="" />
+        <LuaEncryptSign Value="" />
+        <Android_PackageName Value="com.meteor.PopStar36" />
+        <AndroidkeyStore Value="D:\KeyStore\android.keystore" />
+        <AndroidVersion Value="android-21" />
+        <iOS_Target Value="PopStar3.6 iOS" />
+        <iOS_BundleID Value="" />
+        <Platform Value="Android" />
+        <FrameworkVersion Value="cocos2d-x-3.6" />
+        <IsDebugKeystore Value="False" />
+        <KeystorePassword Value="zwmeteor2015" />
+        <KeystoreAliasName Value="meteor" />
+        <KeystoreAliasPassword Value="zwmeteor2015" />
+        <EnableSourceMap Value="False" />
+        <EnableHTML5Advanced Value="False" />
+      </Value>
+    </Item>
+    <Item Key="CocosRecentOperation">
+      <Value ctype="CocosRecentOperation">
+        <LastPublishType Value="Resource" />
+        <IsLastPublish Value="False" />
+        <LastRunType Value="Unknown" />
+      </Value>
+    </Item>
+    <Item Key="TabsParamsKey">
+      <Value ctype="TabsInfo">
+        <OpenedDocuments>
+          <FilePathData Path="GameScene.csd" />
+          <FilePathData Path="MenuScene.csd" />
+          <FilePathData Path="LogIn.csd" />
+        </OpenedDocuments>
+        <ActiveDocument Path="LogIn.csd" />
+      </Value>
+    </Item>
+  </Properties>
+</UserData>

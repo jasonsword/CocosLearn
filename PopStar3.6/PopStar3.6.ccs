@@ -1,0 +1,60 @@
+<Solution>
+  <PropertyGroup Name="PopStar3.6" Version="2.2.8.0" Type="CocosStudio" />
+  <SolutionFolder>
+    <Group ctype="ResourceGroup">
+      <RootFolder Name=".">
+        <Folder Name="fonts">
+          <TTF Name="Avenir-Roman.ttf" />
+          <Fnt Name="s_number_member_small.fnt" />
+          <Fnt Name="s_number_score.fnt" />
+          <Fnt Name="titleinfo.fnt" />
+        </Folder>
+        <Project Name="GameScene.csd" Type="Scene" />
+        <Folder Name="images">
+          <PlistImageFolder Image="star_packer.png" PListFile="star_packer.plist" Name=".star_packer_PList.Dir">
+            <PlistImageFile Name="icon.png" Key="icon.png" />
+            <PlistImageFile Name="newgame.png" Key="newgame.png" />
+            <PlistImageFile Name="pause.png" Key="pause.png" />
+            <PlistImageFile Name="pop.png" Key="pop.png" />
+            <PlistImageFile Name="rate.png" Key="rate.png" />
+            <PlistImageFile Name="resume.png" Key="resume.png" />
+            <PlistImageFile Name="sound.png" Key="sound.png" />
+            <PlistImageFile Name="star.png" Key="star.png" />
+            <PlistImageFile Name="star_b.png" Key="star_b.png" />
+            <PlistImageFile Name="star_g.png" Key="star_g.png" />
+            <PlistImageFile Name="star_p.png" Key="star_p.png" />
+            <PlistImageFile Name="star_r.png" Key="star_r.png" />
+            <PlistImageFile Name="star_y.png" Key="star_y.png" />
+            <PlistImageFile Name="ui1.png" Key="ui1.png" />
+            <PlistImageFile Name="ui2.png" Key="ui2.png" />
+            <PlistImageFile Name="ui3.png" Key="ui3.png" />
+            <PlistImageFile Name="save_exit.png" Key="save_exit.png" />
+          </PlistImageFolder>
+          <Image Name="bg_main.png" />
+          <Image Name="combo_1.png" />
+          <Image Name="combo_2.png" />
+          <Image Name="combo_3.png" />
+          <Image Name="loginbtn.png" />
+          <Image Name="loginbtn_bright.png" />
+          <Image Name="loginbtn_light.png" />
+          <Image Name="login_bg.png" />
+        </Folder>
+        <Project Name="LogIn.csd" Type="Layer" />
+        <Project Name="MenuScene.csd" Type="Scene" />
+        <Folder Name="particles">
+          <File Name="leaf_open.plist" />
+          <PlistParticleFile Name="quanquan.plist" />
+          <PlistParticleFile Name="spark.plist" />
+          <File Name="test.plist" />
+          <Image Name="fire.png" />
+          <Image Name="star1d.png" />
+          <Image Name="star2d.png" />
+          <Image Name="star3d.png" />
+          <Image Name="star4d.png" />
+          <Image Name="star5d.png" />
+        </Folder>
+        <Project Name="TopMenu.csd" Type="Layer" />
+      </RootFolder>
+    </Group>
+  </SolutionFolder>
+</Solution>
