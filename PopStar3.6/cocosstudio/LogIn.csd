@@ -1,5 +1,5 @@
 <GameProjectFile>
-  <PropertyGroup Type="Layer" Name="LogIn" ID="32db4240-8b0e-4846-af2f-64ed2bc3fd53" Version="2.2.8.0" />
+  <PropertyGroup Type="Layer" Name="LogIn" ID="32db4240-8b0e-4846-af2f-64ed2bc3fd53" Version="2.3.1.1" />
   <Content ctype="GameProjectContent">
     <Content>
       <Animation Duration="0" Speed="1.0000" />
@@ -13,11 +13,11 @@
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition X="0.5000" Y="0.5000" />
-            <PreSize />
+            <PreSize X="0.0000" Y="0.0000" />
             <FileData Type="Normal" Path="images/login_bg.png" Plist="" />
             <BlendFunc Src="1" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="signin" ActionTag="63444803" Tag="5" IconVisible="False" HorizontalEdge="LeftEdge" VerticalEdge="TopEdge" LeftMargin="153.0000" RightMargin="153.0000" TopMargin="774.5000" BottomMargin="414.5000" TouchEnable="True" FontSize="36" ButtonText="Sign in" Scale9Enable="True" Scale9Width="414" Scale9Height="91" ctype="ButtonObjectData">
+          <AbstractNodeData Name="signin" ActionTag="63444803" Tag="5" IconVisible="False" HorizontalEdge="LeftEdge" VerticalEdge="TopEdge" LeftMargin="153.0000" RightMargin="153.0000" TopMargin="774.5000" BottomMargin="414.5000" TouchEnable="True" FontSize="36" ButtonText="Sign in" Scale9Enable="True" Scale9Width="414" Scale9Height="91" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
             <Size X="414.0000" Y="91.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="360.0000" Y="460.0000" />
@@ -33,14 +33,14 @@
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="forget" ActionTag="-1865026900" Tag="6" IconVisible="False" HorizontalEdge="BothEdge" VerticalEdge="TopEdge" LeftMargin="248.5000" RightMargin="248.5000" TopMargin="904.0000" BottomMargin="344.0000" FontSize="27" LabelText="Forgot password?" ctype="TextObjectData">
+          <AbstractNodeData Name="forget" ActionTag="-1865026900" Tag="6" IconVisible="False" HorizontalEdge="BothEdge" VerticalEdge="TopEdge" LeftMargin="248.5000" RightMargin="248.5000" TopMargin="904.0000" BottomMargin="344.0000" FontSize="27" LabelText="Forgot password?" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
             <Size X="223.0000" Y="32.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="360.0000" Y="360.0000" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="180" G="156" B="156" />
             <PrePosition X="0.5000" Y="0.2813" />
-            <PreSize />
+            <PreSize X="0.0000" Y="0.0000" />
             <FontResource Type="Normal" Path="fonts/Avenir-Roman.ttf" Plist="" />
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
@@ -65,26 +65,26 @@
             <PreSize X="0.5556" Y="0.0625" />
             <FontResource Type="Normal" Path="fonts/Avenir-Roman.ttf" Plist="" />
           </AbstractNodeData>
-          <AbstractNodeData Name="signup" ActionTag="1362717573" Tag="9" IconVisible="False" HorizontalEdge="BothEdge" VerticalEdge="BottomEdge" LeftMargin="241.5000" RightMargin="236.5000" TopMargin="1184.0000" BottomMargin="64.0000" FontSize="27" LabelText="New Here? Sign Up" HorizontalAlignmentType="HT_Center" VerticalAlignmentType="VT_Center" ctype="TextObjectData">
+          <AbstractNodeData Name="signup" ActionTag="1362717573" Tag="9" IconVisible="False" HorizontalEdge="BothEdge" VerticalEdge="BottomEdge" LeftMargin="241.5000" RightMargin="236.5000" TopMargin="1184.0000" BottomMargin="64.0000" FontSize="27" LabelText="New Here? Sign Up" HorizontalAlignmentType="HT_Center" VerticalAlignmentType="VT_Center" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
             <Size X="242.0000" Y="32.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="362.5000" Y="80.0000" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="231" G="175" B="175" />
             <PrePosition X="0.5035" Y="0.0625" />
-            <PreSize />
+            <PreSize X="0.0000" Y="0.0000" />
             <FontResource Type="Normal" Path="fonts/Avenir-Roman.ttf" Plist="" />
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="error" ActionTag="-1196851679" Tag="10" IconVisible="False" LeftMargin="360.0000" RightMargin="360.0000" TopMargin="1009.0000" BottomMargin="229.0000" FontSize="36" LabelText="&#xA;" HorizontalAlignmentType="HT_Center" VerticalAlignmentType="VT_Center" ctype="TextObjectData">
-            <Size Y="42.0000" />
+          <AbstractNodeData Name="error" ActionTag="-1196851679" Tag="10" IconVisible="False" LeftMargin="360.0000" RightMargin="360.0000" TopMargin="1009.0000" BottomMargin="229.0000" FontSize="36" LabelText="&#xA;" HorizontalAlignmentType="HT_Center" VerticalAlignmentType="VT_Center" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+            <Size X="0.0000" Y="42.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="360.0000" Y="250.0000" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="0" B="0" />
             <PrePosition X="0.5000" Y="0.1953" />
-            <PreSize />
+            <PreSize X="0.0000" Y="0.0000" />
             <FontResource Type="Normal" Path="fonts/Avenir-Roman.ttf" Plist="" />
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />

@@ -1,5 +1,5 @@
 <GameProjectFile>
-  <PropertyGroup Type="Scene" Name="GameScene" ID="ba50d370-7001-40c8-89d8-e7798db2eceb" Version="2.2.8.0" />
+  <PropertyGroup Type="Scene" Name="GameScene" ID="ba50d370-7001-40c8-89d8-e7798db2eceb" Version="2.3.1.1" />
   <Content ctype="GameProjectContent">
     <Content>
       <Animation Duration="0" Speed="1.0000" />
@@ -13,7 +13,7 @@
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition X="0.5000" Y="0.5000" />
-            <PreSize />
+            <PreSize X="0.0000" Y="0.0000" />
             <FileData Type="Normal" Path="images/bg_main.png" Plist="" />
           </AbstractNodeData>
         </Children>
