@@ -5,6 +5,7 @@
 *.aps
 *.config
 *.user
+*.opendb
 
 
 #过滤文件夹Debug,Release,obj
