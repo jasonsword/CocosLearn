@@ -1,0 +1,45 @@
+<Solution>
+  <PropertyGroup Name="PopStar3.9" Version="2.3.3.0" Type="CocosStudio" />
+  <SolutionFolder>
+    <Group ctype="ResourceGroup">
+      <RootFolder Name=".">
+        <Project Name="MainScene.csd" Type="Scene" />
+        <Image Name="HelloWorld.png" />
+        <Folder Name="images">
+          <PlistImageFolder Image="star_packer.png" PListFile="star_packer.plist" Name=".star_packer_PList.Dir" />
+          <Image Name="bg_main.png" />
+          <Image Name="combo_1.png" />
+          <Image Name="combo_2.png" />
+          <Image Name="combo_3.png" />
+          <Image Name="loginbtn.png" />
+          <Image Name="loginbtn_bright.png" />
+          <Image Name="loginbtn_light.png" />
+          <Image Name="login_bg.png" />
+          <Image Name="star_packer.png" />
+        </Folder>
+        <Folder Name="fonts">
+          <Fnt Name="s_number_member_small.fnt" />
+          <Fnt Name="s_number_score.fnt" />
+          <Fnt Name="titleinfo.fnt" />
+          <TTF Name="Avenir-Roman.ttf" />
+        </Folder>
+        <Folder Name="particles">
+          <File Name="leaf_open.plist" />
+          <PlistParticleFile Name="quanquan.plist" />
+          <PlistParticleFile Name="spark.plist" />
+          <File Name="test.plist" />
+          <Image Name="fire.png" />
+          <Image Name="star1d.png" />
+          <Image Name="star2d.png" />
+          <Image Name="star3d.png" />
+          <Image Name="star4d.png" />
+          <Image Name="star5d.png" />
+        </Folder>
+        <Project Name="TopMenu.csd" Type="Layer" />
+        <Project Name="MenuScene.csd" Type="Scene" />
+        <Project Name="LogIn.csd" Type="Layer" />
+        <Project Name="GameScene.csd" Type="Scene" />
+      </RootFolder>
+    </Group>
+  </SolutionFolder>
+</Solution>

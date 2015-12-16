@@ -1,0 +1,134 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="win32">
+      <UniqueIdentifier>{84a8ebd7-7cf0-47f6-b75e-d441df67da40}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="resource">
+      <UniqueIdentifier>{715254bc-d70b-4ec5-bf29-467dd3ace079}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src">
+      <UniqueIdentifier>{bb6c862e-70e9-49d9-81b7-3829a6f50471}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\connection">
+      <UniqueIdentifier>{4a58b9ef-eba7-4ff6-9831-5658b1b0484d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\scenes">
+      <UniqueIdentifier>{b85da7b2-f028-4e89-9422-1dbe6c53d848}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>win32</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\AppDelegate.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\connection\GameConnection.cpp">
+      <Filter>src\connection</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\connection\MessageBase.pb.cc">
+      <Filter>src\connection</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\connection\ODSocket.cpp">
+      <Filter>src\connection</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\connection\Register.pb.cc">
+      <Filter>src\connection</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\connection\WebSocketConnection.cpp">
+      <Filter>src\connection</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\scenes\BackToMenu.cpp">
+      <Filter>src\scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\scenes\GameData.cpp">
+      <Filter>src\scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\scenes\GameResource.cpp">
+      <Filter>src\scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\scenes\GameScene.cpp">
+      <Filter>src\scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\scenes\LogInScene.cpp">
+      <Filter>src\scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\scenes\MenuScene.cpp">
+      <Filter>src\scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\scenes\Star.cpp">
+      <Filter>src\scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\scenes\StarMatrix.cpp">
+      <Filter>src\scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\scenes\TopMenu.cpp">
+      <Filter>src\scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\scenes\XmlData.cpp">
+      <Filter>src\scenes</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="main.h">
+      <Filter>win32</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\AppDelegate.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\connection\GameConnection.h">
+      <Filter>src\connection</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\connection\MessageBase.pb.h">
+      <Filter>src\connection</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\connection\ODSocket.h">
+      <Filter>src\connection</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\connection\Register.pb.h">
+      <Filter>src\connection</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\connection\WebSocketConnection.h">
+      <Filter>src\connection</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\scenes\BackToMenu.h">
+      <Filter>src\scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\scenes\GameData.h">
+      <Filter>src\scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\scenes\GameResource.h">
+      <Filter>src\scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\scenes\GameScene.h">
+      <Filter>src\scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\scenes\LogInScene.h">
+      <Filter>src\scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\scenes\MenuScene.h">
+      <Filter>src\scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\scenes\Star.h">
+      <Filter>src\scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\scenes\StarMatrix.h">
+      <Filter>src\scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\scenes\TopMenu.h">
+      <Filter>src\scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\scenes\XmlData.h">
+      <Filter>src\scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\LSlog.h">
+      <Filter>src</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="game.rc">
+      <Filter>resource</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+</Project>
